@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Backstage.Models.Language>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="right_col" role="main">
+    <!-- top tiles -->
+    <div class="row" style="display: inline-block;height:1381px">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Language_type)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Language_type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Language_id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Language_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Language_id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
