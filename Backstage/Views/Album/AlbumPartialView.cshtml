@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Backstage.ViewModel.AlbumViewModel>
+<table class="table" style="margin-top:0">
+    <tr>
+        <th style="margin-top:0">
+            Albym_id
+        </th>
+        <th>
+            Album_Name
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            About
+        </th>
+        <th>
+            Singer_id
+        </th>
+        <th>
+            Datetime
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Pic
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var m in Model)
+    {
+
+
+        <tr>
+            <td>
+                @m.Album_id
+            </td>
+
+            <td>
+                @m.Album_Name
+            </td>
+            <td>
+                @m.Company
+            </td>
+            <td>
+                @m.About
+            </td>
+            <td>
+                @m.Singer_id
+            </td>
+            <td>
+                @m.Datetime
+            </td>
+            <td>
+                @m.Price
+            </td>
+            <td>
+                @m.Pic
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = m.Album_id })
+                @Html.ActionLink("Details", "Details", new { id = m.Album_id })
+                @Html.ActionLink("Delete", "Delete", new { id = m.Album_id })
+            </td>
+        </tr>
+
+
+    }
+</table>
+
+

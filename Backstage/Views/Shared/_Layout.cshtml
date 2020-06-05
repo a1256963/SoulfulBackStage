@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     <style>
-        .top_nav .navbar-right {
-            margin: 0px;
+        .right_col{
+            margin-bottom:0;
         }
     </style>
     @Styles.Render("~/Content/css")
@@ -24,13 +24,13 @@
     <link href="~/Backstage/daterangepicker.css" rel="stylesheet" />
     <link href="~/Backstage/custom.min.css" rel="stylesheet" />
 </head>
-<body style="padding-top: 0;">
-    <div class="container body-content">
+<body style="padding-top: 0;padding-bottom:0">
+    <div class="container body-content"style="height:inherit">
 
 
         <div class="nav-md">
-            <div class="container body">
-                <div class="main_container">
+            <div class="container body"style="height:100%">
+                
                     <div class="col-md-3 left_col">
                         <div class="left_col scroll-view">
                             <div class="navbar nav_title" style="border: 0;">
@@ -200,13 +200,16 @@
                             </div>
                         </div>
                     </div>
-                    @RenderBody()
+                    
+                        @RenderBody()
+                    
+                    
                     <!-- /top navigation -->
                     <!-- page content -->
                     <!-- /page content -->
                     <!-- footer content -->
                     <!-- /footer content -->
-                </div>
+                
             </div>
         </div>
 

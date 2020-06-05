@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    <style>
+        .top_nav .navbar-right {
+            margin: 0px;
+        }
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("topCSS", required: false)
+    @RenderSection("topJS", required: false)
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/nprogress.css" rel="stylesheet" />
+    <link href="~/Backstage/green.css" rel="stylesheet" />
+    <link href="~/Backstage/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />
+    <link href="~/Backstage/jqvmap.min.css" rel="stylesheet" />
+    <link href="~/Backstage/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Backstage/custom.min.css" rel="stylesheet" />
+</head>
+<body style="padding-top: 0;">
+    @RenderBody()
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("endCSS", required: false)
+    @RenderSection("endJS", required: false)
+    <script src="~/backstage_js/jquery.min.js"></script>
+    <script src="~/backstage_js/bootstrap.bundle.min.js"></script>
+    <script src="~/backstage_js/fastclick.js"></script>
+    <script src="~/backstage_js/nprogress.js"></script>
+    <script src="~/backstage_js/Chart.min.js"></script>
+    <script src="~/backstage_js/gauge.min.js"></script>
+    <script src="~/backstage_js/bootstrap-progressbar.min.js"></script>
+    <script src="~/backstage_js/skycons.js"></script>
+
+    <script src="~/backstage_js/jquery.flot.js"></script>
+    <script src="~/backstage_js/jquery.flot.pie.js"></script>
+    <script src="~/backstage_js/jquery.flot.resize.js"></script>
+    <script src="~/backstage_js/jquery.flot.stack.js"></script>
+    <script src="~/backstage_js/jquery.flot.time.js"></script>
+
+    <script src="~/backstage_js/jquery.flot.orderBars.js"></script>
+    <script src="~/backstage_js/jquery.flot.spline.min.js"></script>
+    <script src="~/backstage_js/curvedLines.js"></script>
+
+    <script src="~/backstage_js/jquery.vmap.js"></script>
+    <script src="~/backstage_js/jquery.vmap.world.js"></script>
+    <script src="~/backstage_js/jquery.vmap.sampledata.js"></script>
+
+    <script src="~/backstage_js/moment.min.js"></script>
+    <script src="~/backstage_js/daterangepicker.js"></script>
+
+    <script src="~/backstage_js/custom.min.js"></script>
+</body>
+</html>
