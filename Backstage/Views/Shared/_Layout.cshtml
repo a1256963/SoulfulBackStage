@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     <style>
-        .right_col{
-            margin-bottom:0;
+        .right_col {
+            margin-bottom: 0;
         }
     </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/chartjs")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
 
