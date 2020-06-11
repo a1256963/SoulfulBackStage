@@ -28,9 +28,10 @@ namespace Backstage.Controllers
             return View();
         }
 
-        public ActionResult Sales()
+        public ActionResult Pie()
         {
             return View();
         }
+
     }
 }
