@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -173,9 +176,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\GiveBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SingersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +192,7 @@
     <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\GiveBacks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Like.cs" />
@@ -198,11 +204,13 @@
     <Compile Include="Models\Style.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\SingerRepository.cs" />
     <Compile Include="Repositories\SoulfulRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\AlbumViewModel.cs" />
+    <Compile Include="ViewModel\SingerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
@@ -347,6 +355,19 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Album\Edit.cshtml" />
+    <Content Include="Views\Album\Create.cshtml" />
+    <Content Include="Views\Album\Delete.cshtml" />
+    <Content Include="Views\Singers\Create.cshtml" />
+    <Content Include="Views\Singers\Delete.cshtml" />
+    <Content Include="Views\Singers\Details.cshtml" />
+    <Content Include="Views\Singers\Edit.cshtml" />
+    <Content Include="Views\Singers\Index.cshtml" />
+    <Content Include="Views\Singers\AlbumPartialView.cshtml" />
+    <Content Include="Views\GiveBacks\Create.cshtml" />
+    <Content Include="Views\GiveBacks\Delete.cshtml" />
+    <Content Include="Views\GiveBacks\Details.cshtml" />
+    <Content Include="Views\GiveBacks\Edit.cshtml" />
+    <Content Include="Views\GiveBacks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

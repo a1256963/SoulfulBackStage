@@ -26,7 +26,7 @@ namespace Backstage.Models
         public virtual DbSet<Song> Song { get; set; }
         public virtual DbSet<Style> Style { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-
+        public virtual DbSet<GiveBacks> GiveBacks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRoles>()
