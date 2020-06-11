@@ -214,6 +214,7 @@
     <Content Include="backstage_js\bootstrap-progressbar.min.js" />
     <Content Include="backstage_js\bootstrap.bundle.min.js" />
     <Content Include="backstage_js\Chart.min.js" />
+    <Content Include="backstage_js\Color.js" />
     <Content Include="backstage_js\curvedLines.js" />
     <Content Include="backstage_js\custom.min.js" />
     <Content Include="backstage_js\daterangepicker.js" />
@@ -235,6 +236,7 @@
     <Content Include="backstage_js\moment.min.js" />
     <Content Include="backstage_js\nprogress.js" />
     <Content Include="backstage_js\skycons.js" />
+    <Content Include="backstage_js\Utility.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -347,6 +349,7 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Album\Edit.cshtml" />
+    <Content Include="Views\Home\Pie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

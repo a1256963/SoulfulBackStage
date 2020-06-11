@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -715,84 +716,44 @@
         </div>
     </div>
 </div>
-
 @section endJS{
     <script>
-        var ctx = document.getElementById("lineChart");
-        var chart = new Chart(ctx, {
-            type: "line",
+        //Pie Chart
+        var ctxPie = document.getElementById("peiChart");
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
             data: {
-                labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                labels: ['華語', '西洋', '日語', '韓語', '粵語'],
                 datasets: [{
-                    label: "總公司",
-                    data: [10, 15, 20, 14, 19, 28, 30, 13, 22, 25, 17, 26],
-                    fill: false,
-                    backgroundColor: 'rgba(6, 205, 247 ,0.3)',
-                    borderColor: 'rgb(6, 205, 247 )',
-                    pointStyle: "circle",
-                    pointBackgroundColor: 'rgb(116, 247, 6 )',
-                    pointRadius: 5,
-                    pointHoverRadius: 10
-                }]
+                    data: [78, 95, 83, 74, 50],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.blue,
+                        window.chartColors.orange,
+                        window.chartColors.yellow,
+                        window.chartColors.green
+                    ]
+                }],
             },
             options: {
                 responsive: true,
                 title: {
                     display: true,
                     fontSize: 26,
-                    text: '2020專輯營業額'
+                    text: '熱門排行榜%'
                 },
                 tooltips: {
                     mode: 'point',
                     intersect: true,
                 },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: '月份',
-                            fontSize: 20
-                        },
-                        ticks: {
-                            fontSize: 15
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: '百萬(美元)',
-                            fontSize: 20
-                        },
-                        ticks: {
-                            fontSize: 15
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 3000
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        fontColor: 'black',
+                    }
                 }
             }
         });
     </script>
-
-
-
-
 }
 
-
-
-<!-- /top navigation -->
-<!-- page content -->
-<!-- /page content -->
-<!-- footer content -->
-<!-- /footer content -->
-@*<footer>
-        <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
-    </footer>*@
