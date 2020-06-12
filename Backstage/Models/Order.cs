@@ -9,34 +9,32 @@ namespace Backstage.Models
     [Table("Order")]
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            OrderDetail = new HashSet<OrderDetail>();
+        }
+
         [Key]
         public int Order_id { get; set; }
-
-        public int Album_id { get; set; }
-
-        [Required]
-        [StringLength(128)]
-        public string User_id { get; set; }
-
-        public decimal Price { get; set; }
-
-        public int Count { get; set; }
 
         public DateTime Datetime { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Fedex { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string Credit_card { get; set; }
-
         [StringLength(128)]
         public string AspNetUsers_Id { get; set; }
 
-        public virtual Album Album { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string RecieverName { get; set; }
 
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public int RecieverPhone { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string RecieverAdress { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }
