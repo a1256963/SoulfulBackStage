@@ -31,6 +31,11 @@ namespace Backstage.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Album>()
+               .HasMany(e => e.OrderDetail)
+               .WithRequired(e => e.Album)
+               .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<AspNetRoles>()
                 .HasMany(e => e.AspNetUsers)
                 .WithMany(e => e.AspNetRoles)
@@ -53,8 +58,14 @@ namespace Backstage.Models
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.Order)
-                .WithOptional(e => e.AspNetUsers)
-                .HasForeignKey(e => e.AspNetUsers_Id);
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.AspNetUsers_Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.OrderDetail)
+                .WithRequired(e => e.Order)
+                .WillCascadeOnDelete(false);
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Backstage.Models
 
         public decimal Price { get; set; }
 
+        public virtual Album Album { get; set; }
+
         public virtual Order Order { get; set; }
     }
 }
