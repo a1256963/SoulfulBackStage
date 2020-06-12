@@ -10,17 +10,17 @@ using Backstage.Models;
 
 namespace Backstage.Controllers
 {
-    public class GiveBackController : Controller
+    public class GiveBacksController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
 
-        // GET: GiveBack
-        public ActionResult Index()
+        // GET: GiveBacks
+        public ActionResult Index(string searching)
         {
-            return View(db.GiveBacks.ToList());
+            return View(db.GiveBacks.Where(x=>x.Name.Contains(searching)||x.Email.Contains(searching)||x.Subject.Contains(searching)||x.Message.Contains(searching)|| searching==null).ToList());
         }
 
-        // GET: GiveBack/Details/5
+        // GET: GiveBacks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace Backstage.Controllers
             return View(giveBacks);
         }
 
-        // GET: GiveBack/Create
+        // GET: GiveBacks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: GiveBack/Create
+        // POST: GiveBacks/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
@@ -58,7 +58,7 @@ namespace Backstage.Controllers
             return View(giveBacks);
         }
 
-        // GET: GiveBack/Edit/5
+        // GET: GiveBacks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace Backstage.Controllers
             return View(giveBacks);
         }
 
-        // POST: GiveBack/Edit/5
+        // POST: GiveBacks/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
@@ -89,7 +89,7 @@ namespace Backstage.Controllers
             return View(giveBacks);
         }
 
-        // GET: GiveBack/Delete/5
+        // GET: GiveBacks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace Backstage.Controllers
             return View(giveBacks);
         }
 
-        // POST: GiveBack/Delete/5
+        // POST: GiveBacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
