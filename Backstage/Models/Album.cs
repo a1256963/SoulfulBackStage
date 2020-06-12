@@ -12,9 +12,9 @@ namespace Backstage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Album()
         {
-            Order = new HashSet<Order>();
             Song = new HashSet<Song>();
             Style = new HashSet<Style>();
+            OrderDetail = new HashSet<OrderDetail>();
         }
 
         [Key]
@@ -39,15 +39,17 @@ namespace Backstage.Models
 
         public decimal Price { get; set; }
 
-        public virtual Singer Singer { get; set; }
+        public int Hits { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual Singer Singer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Song> Song { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Style> Style { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

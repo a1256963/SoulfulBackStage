@@ -22,6 +22,7 @@ namespace Backstage.Models
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<Like> Like { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<Singer> Singer { get; set; }
         public virtual DbSet<Song> Song { get; set; }
         public virtual DbSet<Style> Style { get; set; }
@@ -30,6 +31,11 @@ namespace Backstage.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Album>()
+               .HasMany(e => e.OrderDetail)
+               .WithRequired(e => e.Album)
+               .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<AspNetRoles>()
                 .HasMany(e => e.AspNetUsers)
                 .WithMany(e => e.AspNetRoles)
@@ -52,8 +58,14 @@ namespace Backstage.Models
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.Order)
-                .WithOptional(e => e.AspNetUsers)
-                .HasForeignKey(e => e.AspNetUsers_Id);
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.AspNetUsers_Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.OrderDetail)
+                .WithRequired(e => e.Order)
+                .WillCascadeOnDelete(false);
         }
     }
 }

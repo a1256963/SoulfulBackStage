@@ -195,6 +195,7 @@
     <Compile Include="Models\Like.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Singer.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\SoulfulBackStage.cs" />
