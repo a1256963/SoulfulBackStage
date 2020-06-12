@@ -55,9 +55,14 @@
                             <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="peiChart"></canvas>
+                        </div>
+                    </div>
                 </div>
 
+                
                 @*<div class="col-md-9 col-sm-9 ">
                         <div id="chart_plot_01" class="demo-placeholder"></div>
                     </div>
@@ -717,7 +722,10 @@
 </div>
 
 @section endJS{
+    <script src="~/backstage_js/Utility.js"></script>
+    <script src="~/backstage_js/Color.js"></script>
     <script>
+        //lineChart
         var ctx = document.getElementById("lineChart");
         var chart = new Chart(ctx, {
             type: "line",
@@ -779,6 +787,44 @@
                 }
             }
         });
+
+        //Pie Chart
+        var ctxPie = document.getElementById("peiChart");
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['華語', '西洋', '日語', '韓語', '粵語'],
+                datasets: [{
+                    data: [78, 95, 83, 74, 50],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.blue,
+                        window.chartColors.yellow,
+                        window.chartColors.green,
+                        window.chartColors.purple
+                    ]
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    fontSize: 26,
+                    text: '2020熱門排行榜%'
+                },
+                tooltips: {
+                    mode: 'point',
+                    intersect: true,
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        fontColor: 'black',
+                    }
+                }
+            }
+        });
+
     </script>
 
 
