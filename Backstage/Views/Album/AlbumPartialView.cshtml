@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Backstage.ViewModel.AlbumViewModel>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 <table class="table" style="margin-top:0">
+
     <tr>
         <th style="margin-top:0">
             Albym_id
@@ -62,7 +66,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = m.Album_id })
-                @Html.ActionLink("Details", "Details", new { id = m.Album_id })
                 @Html.ActionLink("Delete", "Delete", new { id = m.Album_id })
             </td>
         </tr>

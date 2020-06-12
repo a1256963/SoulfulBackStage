@@ -173,9 +173,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\GiveBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SingersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +189,7 @@
     <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\GiveBacks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Like.cs" />
@@ -350,6 +353,19 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Home\Pie.cshtml" />
+    <Content Include="Views\Album\AlbumDelete.cshtml" />
+    <Content Include="Views\Album\Create.cshtml" />
+    <Content Include="Views\Album\Delete.cshtml" />
+    <Content Include="Views\GiveBacks\Create.cshtml" />
+    <Content Include="Views\GiveBacks\Delete.cshtml" />
+    <Content Include="Views\GiveBacks\Details.cshtml" />
+    <Content Include="Views\GiveBacks\Edit.cshtml" />
+    <Content Include="Views\GiveBacks\Index.cshtml" />
+    <Content Include="Views\Singers\Create.cshtml" />
+    <Content Include="Views\Singers\Delete.cshtml" />
+    <Content Include="Views\Singers\Details.cshtml" />
+    <Content Include="Views\Singers\Edit.cshtml" />
+    <Content Include="Views\Singers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
