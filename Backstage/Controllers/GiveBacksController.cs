@@ -17,7 +17,7 @@ namespace Backstage.Controllers
         // GET: GiveBacks
         public ActionResult Index(string searching)
         {
-            return View(db.GiveBacks.Where(x=>x.Name.Contains(searching)||x.Email.Contains(searching)||x.Subject.Contains(searching)||x.Message.Contains(searching)|| searching==null).ToList());
+            return View(db.GiveBacks.Where(x=>x.Name.Contains(searching)||x.Email.Contains(searching)||x.Subject.Contains(searching)||x.Message.Contains(searching)||x.Status.Contains(searching)|| searching==null).ToList());
         }
 
         // GET: GiveBacks/Details/5
@@ -78,7 +78,7 @@ namespace Backstage.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email,Subject,Message")] GiveBacks giveBacks)
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,Subject,Message,Status")] GiveBacks giveBacks)
         {
             if (ModelState.IsValid)
             {
