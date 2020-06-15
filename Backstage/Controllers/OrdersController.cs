@@ -10,112 +10,112 @@ using Backstage.Models;
 
 namespace Backstage.Controllers
 {
-    public class SingersController : Controller
+    public class OrdersController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
 
-        // GET: Singers
+        // GET: Orders
         public ActionResult Index(string searching)
         {
-            var singer = db.Singer.Include(s => s.Language);
-            return View(db.Singer.Where(x=>x.Language.Language_type.Contains(searching)||x.Name.Contains(searching)||x.Gender.Contains(searching)||x.Country.Contains(searching)||searching==null).ToList());
+            var order = db.Order.Include(o => o.AspNetUsers);
+            return View(db.Order.Where(x=>x.AspNetUsers.Email.Contains(searching)||x.RecieverName.Contains(searching)||x.RecieverPhone.Contains(searching)||x.RecieverAdress.Contains(searching)||searching==null).ToList());
         }
 
-        // GET: Singers/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(order);
         }
 
-        // GET: Singers/Create
+        // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type");
+            ViewBag.AspNetUsers_Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
-        // POST: Singers/Create
+        // POST: Orders/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Create([Bind(Include = "Order_id,Datetime,AspNetUsers_Id,RecieverName,RecieverPhone,RecieverAdress")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Singer.Add(singer);
+                db.Order.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.AspNetUsers_Id = new SelectList(db.AspNetUsers, "Id", "Email", order.AspNetUsers_Id);
+            return View(order);
         }
 
-        // GET: Singers/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.AspNetUsers_Id = new SelectList(db.AspNetUsers, "Id", "Email", order.AspNetUsers_Id);
+            return View(order);
         }
 
-        // POST: Singers/Edit/5
+        // POST: Orders/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Edit([Bind(Include = "Order_id,Datetime,AspNetUsers_Id,RecieverName,RecieverPhone,RecieverAdress")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(singer).State = EntityState.Modified;
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.AspNetUsers_Id = new SelectList(db.AspNetUsers, "Id", "Email", order.AspNetUsers_Id);
+            return View(order);
         }
 
-        // GET: Singers/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(order);
         }
 
-        // POST: Singers/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Singer singer = db.Singer.Find(id);
-            db.Singer.Remove(singer);
+            Order order = db.Order.Find(id);
+            db.Order.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -71,10 +71,29 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        <div id="upload" class="form-group">
+            <hr />
+            <div class="col-md-6">
+                <img src="@Model.Pic" class="card-img show_img">
+            </div>
+            <div id="upload">
+                <label for="upload">選擇上傳圖檔</label>
+                <input id="upload" type="file" accept="image/*" v-on:change="showFile">
+                <!-- 上傳按鈕 -->
+                <button class="btn save_btn" type="button" v-on:click="submit">上傳</button>
+            </div>
+            @*<form method="post" enctype="multipart/form-data">
+                <label for="file">檔案名稱:</label>
+                <input type="file" name="file" id="file" />
+                <button id="btn-uploadimg" class="btn save_btn">上傳</button>
+            </form>*@
+        </div>
         <div>
             @Html.ActionLink("Back to List", "Albums")
         </div>
+
     </div>
+    
 
 
 }

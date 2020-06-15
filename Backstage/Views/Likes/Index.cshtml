@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Backstage.Models.Like>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="right_col" role="main">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Song.Song_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User_id)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Song.Song_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_id)
+                    </td>
+                    
+                </tr>
+            }
+
+        </table>
+    </div>
+

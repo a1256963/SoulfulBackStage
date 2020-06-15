@@ -19,6 +19,7 @@ namespace Backstage.Models
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<GiveBacks> GiveBacks { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<Like> Like { get; set; }
         public virtual DbSet<Order> Order { get; set; }
@@ -27,14 +28,13 @@ namespace Backstage.Models
         public virtual DbSet<Song> Song { get; set; }
         public virtual DbSet<Style> Style { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<GiveBacks> GiveBacks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Album>()
-               .HasMany(e => e.OrderDetail)
-               .WithRequired(e => e.Album)
-               .WillCascadeOnDelete(false);
+                .HasMany(e => e.OrderDetail)
+                .WithRequired(e => e.Album)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AspNetRoles>()
                 .HasMany(e => e.AspNetUsers)

@@ -10,112 +10,112 @@ using Backstage.Models;
 
 namespace Backstage.Controllers
 {
-    public class SingersController : Controller
+    public class StylesController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
 
-        // GET: Singers
+        // GET: Styles
         public ActionResult Index(string searching)
         {
-            var singer = db.Singer.Include(s => s.Language);
-            return View(db.Singer.Where(x=>x.Language.Language_type.Contains(searching)||x.Name.Contains(searching)||x.Gender.Contains(searching)||x.Country.Contains(searching)||searching==null).ToList());
+            var style = db.Style.Include(s => s.Album);
+            return View(db.Style.Where(x=>x.Album.Album_Name.Contains(searching)||x.Style_type.Contains(searching)||searching==null).ToList());
         }
 
-        // GET: Singers/Details/5
+        // GET: Styles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Style style = db.Style.Find(id);
+            if (style == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(style);
         }
 
-        // GET: Singers/Create
+        // GET: Styles/Create
         public ActionResult Create()
         {
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type");
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name");
             return View();
         }
 
-        // POST: Singers/Create
+        // POST: Styles/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Create([Bind(Include = "Style_id,Style_type,Album_id")] Style style)
         {
             if (ModelState.IsValid)
             {
-                db.Singer.Add(singer);
+                db.Style.Add(style);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
+            return View(style);
         }
 
-        // GET: Singers/Edit/5
+        // GET: Styles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Style style = db.Style.Find(id);
+            if (style == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
+            return View(style);
         }
 
-        // POST: Singers/Edit/5
+        // POST: Styles/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Edit([Bind(Include = "Style_id,Style_type,Album_id")] Style style)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(singer).State = EntityState.Modified;
+                db.Entry(style).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
+            return View(style);
         }
 
-        // GET: Singers/Delete/5
+        // GET: Styles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            Style style = db.Style.Find(id);
+            if (style == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(style);
         }
 
-        // POST: Singers/Delete/5
+        // POST: Styles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Singer singer = db.Singer.Find(id);
-            db.Singer.Remove(singer);
+            Style style = db.Style.Find(id);
+            db.Style.Remove(style);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

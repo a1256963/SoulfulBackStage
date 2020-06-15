@@ -1,32 +1,33 @@
-﻿@model IEnumerable<Backstage.Models.Singer>
+﻿@model IEnumerable<Backstage.Models.Order>
 
 @{
     ViewBag.Title = "Index";
 }
     <div class="right_col" role="main">
+
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
-        @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
         {
             @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
         }
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Singer_id)
+                    @Html.DisplayNameFor(model => model.AspNetUsers.Email)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Language.Language_type)
+                    @Html.DisplayNameFor(model => model.Datetime)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.RecieverName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Gender)
+                    @Html.DisplayNameFor(model => model.RecieverPhone)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Country)
+                    @Html.DisplayNameFor(model => model.RecieverAdress)
                 </th>
                 <th></th>
             </tr>
@@ -44,27 +45,28 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Singer_id)
+                            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Language.Language_type)
+                            @Html.DisplayFor(modelItem => item.Datetime)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.RecieverName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
+                            @Html.DisplayFor(modelItem => item.RecieverPhone)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Country)
+                            @Html.DisplayFor(modelItem => item.RecieverAdress)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Singer_id }) |
-
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Singer_id })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Order_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Order_id })
                         </td>
                     </tr>
                 }
             }
+
         </table>
     </div>
+

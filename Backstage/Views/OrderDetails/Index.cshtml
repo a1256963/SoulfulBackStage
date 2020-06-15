@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Backstage.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <div class="right_col" role="main">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        @using (Html.BeginForm("Index","OrderDetails", FormMethod.Get))
+        {
+            @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
+        }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Album.Album_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.AspNetUsers_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5" style="color:red">
+                    暫無資料
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Album.Album_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order.AspNetUsers_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetail_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    </div>
+

@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Imgur.API, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -176,8 +179,13 @@
     <Compile Include="Controllers\GiveBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
+    <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\SingersController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
+    <Compile Include="Controllers\StylesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +202,8 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Singer.cs" />
@@ -366,6 +376,31 @@
     <Content Include="Views\Singers\Details.cshtml" />
     <Content Include="Views\Singers\Edit.cshtml" />
     <Content Include="Views\Singers\Index.cshtml" />
+    <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\Songs\Delete.cshtml" />
+    <Content Include="Views\Songs\Details.cshtml" />
+    <Content Include="Views\Songs\Edit.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
+    <Content Include="Views\Styles\Create.cshtml" />
+    <Content Include="Views\Styles\Delete.cshtml" />
+    <Content Include="Views\Styles\Details.cshtml" />
+    <Content Include="Views\Styles\Edit.cshtml" />
+    <Content Include="Views\Styles\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Likes\Create.cshtml" />
+    <Content Include="Views\Likes\Delete.cshtml" />
+    <Content Include="Views\Likes\Details.cshtml" />
+    <Content Include="Views\Likes\Edit.cshtml" />
+    <Content Include="Views\Likes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

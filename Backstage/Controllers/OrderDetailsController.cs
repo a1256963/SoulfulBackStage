@@ -10,112 +10,116 @@ using Backstage.Models;
 
 namespace Backstage.Controllers
 {
-    public class SingersController : Controller
+    public class OrderDetailsController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
 
-        // GET: Singers
+        // GET: OrderDetails
         public ActionResult Index(string searching)
         {
-            var singer = db.Singer.Include(s => s.Language);
-            return View(db.Singer.Where(x=>x.Language.Language_type.Contains(searching)||x.Name.Contains(searching)||x.Gender.Contains(searching)||x.Country.Contains(searching)||searching==null).ToList());
+            var orderDetail = db.OrderDetail.Include(o => o.Album).Include(o => o.Order);
+            return View(db.OrderDetail.Where(x => x.Album.Album_Name.Contains(searching) || x.Order.AspNetUsers_Id.Contains(searching)|| searching == null).ToList());
         }
 
-        // GET: Singers/Details/5
+        // GET: OrderDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            OrderDetail orderDetail = db.OrderDetail.Find(id);
+            if (orderDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(orderDetail);
         }
 
-        // GET: Singers/Create
+        // GET: OrderDetails/Create
         public ActionResult Create()
         {
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type");
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name");
+            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "AspNetUsers_Id");
             return View();
         }
 
-        // POST: Singers/Create
+        // POST: OrderDetails/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Create([Bind(Include = "OrderDetail_id,Order_id,Album_id,Count,Price")] OrderDetail orderDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Singer.Add(singer);
+                db.OrderDetail.Add(orderDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", orderDetail.Album_id);
+            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "AspNetUsers_Id", orderDetail.Order_id);
+            return View(orderDetail);
         }
 
-        // GET: Singers/Edit/5
+        // GET: OrderDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            OrderDetail orderDetail = db.OrderDetail.Find(id);
+            if (orderDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", orderDetail.Album_id);
+            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "AspNetUsers_Id", orderDetail.Order_id);
+            return View(orderDetail);
         }
 
-        // POST: Singers/Edit/5
+        // POST: OrderDetails/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Singer_id,Name,Gender,Country,Language_id")] Singer singer)
+        public ActionResult Edit([Bind(Include = "OrderDetail_id,Order_id,Album_id,Count,Price")] OrderDetail orderDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(singer).State = EntityState.Modified;
+                db.Entry(orderDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Language_id = new SelectList(db.Language, "Language_id", "Language_type", singer.Language_id);
-            return View(singer);
+            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", orderDetail.Album_id);
+            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "AspNetUsers_Id", orderDetail.Order_id);
+            return View(orderDetail);
         }
 
-        // GET: Singers/Delete/5
+        // GET: OrderDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Singer singer = db.Singer.Find(id);
-            if (singer == null)
+            OrderDetail orderDetail = db.OrderDetail.Find(id);
+            if (orderDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(singer);
+            return View(orderDetail);
         }
 
-        // POST: Singers/Delete/5
+        // POST: OrderDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Singer singer = db.Singer.Find(id);
-            db.Singer.Remove(singer);
+            OrderDetail orderDetail = db.OrderDetail.Find(id);
+            db.OrderDetail.Remove(orderDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
