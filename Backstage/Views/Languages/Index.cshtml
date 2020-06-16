@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+}
+
 <div class="right_col" role="main">
     <!-- top tiles -->
     <div class="row" style="display: inline-block;height:1381px">
@@ -11,7 +15,7 @@
             @Html.ActionLink("Create New", "Create")
         </p>
         <table class="table">
-            <tr>
+            <tr class="header">
                 <th>
                     @Html.DisplayNameFor(model => model.Language_type)
                 </th>
@@ -20,13 +24,14 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="context">
                     <td>
                         @Html.DisplayFor(modelItem => item.Language_type)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Language_id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Language_id })
+                        <button>@Html.ActionLink("Edit", "Edit", new { id = item.Language_id })</button>
+                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.Language_id })</button
+                        
                     </td>
                 </tr>
             }

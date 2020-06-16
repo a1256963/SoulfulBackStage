@@ -2,10 +2,10 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-<table class="table" style="margin-top:0">
+<table class="table">
 
-    <tr>
-        <th style="margin-top:0">
+    <tr class="header">
+        <th>
             Album_id
         </th>
         <th>
@@ -38,7 +38,7 @@
     {
 
 
-        <tr>
+        <tr class="context">
             <td>
                 @m.Album_id
             </td>
@@ -65,8 +65,9 @@
                 @m.Pic
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = m.Album_id })
-                @Html.ActionLink("Delete", "Delete", new { id = m.Album_id })
+                <button>@Html.ActionLink("Edit", "Edit", new { id = m.Album_id })</button>
+                <button>@Html.ActionLink("Delete", "Delete", new { id = m.Album_id })</button>
+                
             </td>
         </tr>
 

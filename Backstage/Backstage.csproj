@@ -220,6 +220,7 @@
     <Compile Include="ViewModel\AlbumViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Css\table.css" />
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
     <Content Include="Backstage\bootstrap.min.css" />
     <Content Include="Backstage\custom.min.css" />

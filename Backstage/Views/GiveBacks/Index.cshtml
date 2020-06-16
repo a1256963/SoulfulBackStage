@@ -4,17 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<div class="right_col" role="main" style="padding-top:0">
-
-    <p>
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+}
+<div class="right_col" role="main">
+    <p class="create">
         @Html.ActionLink("Create New", "Create")
     </p>
     @using (Html.BeginForm("Index", "GiveBacks", FormMethod.Get))
     {
-        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
+    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
     }
-    <table class="table" style="margin-top:0">
-        <tr>
+    <table class="table">
+        <tr class="header">
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -30,6 +32,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th></th>
         </tr>
         @if (Model.Count() == 0)
         {
@@ -43,7 +46,7 @@
         {
             foreach (var item in Model)
             {
-                <tr>
+                <tr class="context">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -59,8 +62,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    <td>                        
+                        <button class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
                     </td>
                 </tr>
             }

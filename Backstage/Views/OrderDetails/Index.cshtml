@@ -3,16 +3,21 @@
 @{
     ViewBag.Title = "Index";
 }
-    <div class="right_col" role="main">
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        @using (Html.BeginForm("Index","OrderDetails", FormMethod.Get))
-        {
-            @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
-        }
+
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+}
+
+<div class="right_col" role="main">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
+    }
     <table class="table">
-        <tr>
+        <tr class="header">
             <th>
                 @Html.DisplayNameFor(model => model.Album.Album_Name)
             </th>
@@ -39,7 +44,7 @@
         {
             foreach (var item in Model)
             {
-                <tr>
+                <tr class="context">
                     <td>
                         @Html.DisplayFor(modelItem => item.Album.Album_Name)
                     </td>
@@ -53,13 +58,13 @@
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetail_id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id })
+                        <button>@Html.ActionLink("Edit", "Edit", new { id = item.OrderDetail_id })</button>
+                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id })</button>                        
                     </td>
                 </tr>
             }
         }
 
     </table>
-    </div>
+</div>
 
