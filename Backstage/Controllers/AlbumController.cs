@@ -12,7 +12,9 @@ namespace Backstage.Controllers
 {
     public class AlbumController : Controller
     {
+        
         private SoulfulBackStage db = new SoulfulBackStage();
+        [Authorize(Users = "john@gmail.com")]
         // GET: Album
         public ActionResult Albums()
         {
