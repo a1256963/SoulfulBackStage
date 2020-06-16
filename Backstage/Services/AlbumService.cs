@@ -34,5 +34,19 @@ namespace Backstage.Services
                                };
             return albumContext.ToList();
         }
+
+        public List<HitViewModel> GetHit()
+        {
+            SoulfulBackStage context = new SoulfulBackStage();
+            SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
+
+            var albumContext = from Album in AlbumRepository.GetAll()
+                               select new HitViewModel
+                               {
+                                   Name = Album.Album_Name,
+                                   Hits = Album.Hits
+                               };
+            return albumContext.ToList();
+        }
     }
 }

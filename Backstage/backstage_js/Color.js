@@ -7,6 +7,7 @@ window.chartColors = {
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)',
     orange: 'rgb(255, 159, 64)',
+    white:'rgb(255,255,255)'
 };
 
 var colors = [];
