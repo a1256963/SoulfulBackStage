@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Imgur.API, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
     </Reference>
@@ -218,6 +221,8 @@
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\AlbumViewModel.cs" />
+    <Compile Include="ViewModel\DetailViewModel.cs" />
+    <Compile Include="ViewModel\HitViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\Css\table.css" />
