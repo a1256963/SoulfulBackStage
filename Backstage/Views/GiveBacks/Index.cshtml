@@ -4,14 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-    <div class="right_col" role="main" style="padding-top:0">
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        @using (Html.BeginForm("Index","GiveBacks",FormMethod.Get))
-        {
-            @Html.TextBox("searching")<input type="submit" value="Searching"style="margin-left:10px">
-        }
+<div class="right_col" role="main" style="padding-top:0">
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "GiveBacks", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
+    }
     <table class="table" style="margin-top:0">
         <tr>
             <th>
@@ -42,27 +43,27 @@
         {
             foreach (var item in Model)
             {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
-        </td>
-    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    </td>
+                </tr>
             }
         }
     </table>
-    </div>
+</div>
