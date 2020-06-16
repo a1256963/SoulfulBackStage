@@ -10,112 +10,112 @@ using Backstage.Models;
 
 namespace Backstage.Controllers
 {
-    public class StylesController : Controller
+    public class EventViewsController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
         [Authorize(Users = "john@gmail.com")]
-        // GET: Styles
+        // GET: EventViews
         public ActionResult Index(string searching)
         {
-            var style = db.Style.Include(s => s.Album);
-            return View(db.Style.Where(x=>x.Album.Album_Name.Contains(searching)||x.Style_type.Contains(searching)||searching==null).ToList());
+            var eventView = db.EventView.Include(e => e.Singer);
+            return View(db.EventView.Where(x => x.Name.Contains(searching) || x.Pic.Contains(searching) ||x.Singer.Name.Contains(searching)||x.Adress.Contains(searching)||x.About.Contains(searching)|| searching == null).ToList());
         }
 
-        // GET: Styles/Details/5
+        // GET: EventViews/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Style style = db.Style.Find(id);
-            if (style == null)
+            EventView eventView = db.EventView.Find(id);
+            if (eventView == null)
             {
                 return HttpNotFound();
             }
-            return View(style);
+            return View(eventView);
         }
 
-        // GET: Styles/Create
+        // GET: EventViews/Create
         public ActionResult Create()
         {
-            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name");
+            ViewBag.Singer_id = new SelectList(db.Singer, "Singer_id", "Name");
             return View();
         }
 
-        // POST: Styles/Create
+        // POST: EventViews/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Style_id,Style_type,Album_id")] Style style)
+        public ActionResult Create([Bind(Include = "Event_id,Name,Singer_id,Datetime,Pic,Adress,About")] EventView eventView)
         {
             if (ModelState.IsValid)
             {
-                db.Style.Add(style);
+                db.EventView.Add(eventView);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
-            return View(style);
+            ViewBag.Singer_id = new SelectList(db.Singer, "Singer_id", "Name", eventView.Singer_id);
+            return View(eventView);
         }
 
-        // GET: Styles/Edit/5
+        // GET: EventViews/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Style style = db.Style.Find(id);
-            if (style == null)
+            EventView eventView = db.EventView.Find(id);
+            if (eventView == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
-            return View(style);
+            ViewBag.Singer_id = new SelectList(db.Singer, "Singer_id", "Name", eventView.Singer_id);
+            return View(eventView);
         }
 
-        // POST: Styles/Edit/5
+        // POST: EventViews/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Style_id,Style_type,Album_id")] Style style)
+        public ActionResult Edit([Bind(Include = "Event_id,Name,Singer_id,Datetime,Pic,Adress,About")] EventView eventView)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(style).State = EntityState.Modified;
+                db.Entry(eventView).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name", style.Album_id);
-            return View(style);
+            ViewBag.Singer_id = new SelectList(db.Singer, "Singer_id", "Name", eventView.Singer_id);
+            return View(eventView);
         }
 
-        // GET: Styles/Delete/5
+        // GET: EventViews/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Style style = db.Style.Find(id);
-            if (style == null)
+            EventView eventView = db.EventView.Find(id);
+            if (eventView == null)
             {
                 return HttpNotFound();
             }
-            return View(style);
+            return View(eventView);
         }
 
-        // POST: Styles/Delete/5
+        // POST: EventViews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Style style = db.Style.Find(id);
-            db.Style.Remove(style);
+            EventView eventView = db.EventView.Find(id);
+            db.EventView.Remove(eventView);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

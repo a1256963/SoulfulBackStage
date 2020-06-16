@@ -18,7 +18,7 @@ namespace Backstage.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<EventView> EventView { get; set; }
         public virtual DbSet<GiveBacks> GiveBacks { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<Like> Like { get; set; }

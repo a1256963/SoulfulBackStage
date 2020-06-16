@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\EventViewsController.cs" />
     <Compile Include="Controllers\GiveBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
@@ -199,7 +200,7 @@
     <Compile Include="Models\AspNetUserLogins.cs" />
     <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventView.cs" />
     <Compile Include="Models\GiveBacks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
@@ -406,6 +407,11 @@
     <Content Include="Views\Likes\Details.cshtml" />
     <Content Include="Views\Likes\Edit.cshtml" />
     <Content Include="Views\Likes\Index.cshtml" />
+    <Content Include="Views\EventViews\Create.cshtml" />
+    <Content Include="Views\EventViews\Delete.cshtml" />
+    <Content Include="Views\EventViews\Details.cshtml" />
+    <Content Include="Views\EventViews\Edit.cshtml" />
+    <Content Include="Views\EventViews\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

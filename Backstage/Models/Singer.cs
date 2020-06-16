@@ -13,7 +13,7 @@ namespace Backstage.Models
         public Singer()
         {
             Album = new HashSet<Album>();
-            Event = new HashSet<Event>();
+            Event = new HashSet<EventView>();
         }
 
         [Key]
@@ -37,7 +37,7 @@ namespace Backstage.Models
         public virtual ICollection<Album> Album { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Event> Event { get; set; }
+        public virtual ICollection<EventView> Event { get; set; }
 
         public virtual Language Language { get; set; }
     }

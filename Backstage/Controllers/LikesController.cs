@@ -13,7 +13,7 @@ namespace Backstage.Controllers
     public class LikesController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
-
+        [Authorize(Users = "john@gmail.com")]
         // GET: Likes
         public ActionResult Index()
         {
