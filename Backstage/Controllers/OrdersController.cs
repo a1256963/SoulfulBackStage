@@ -13,7 +13,7 @@ namespace Backstage.Controllers
     public class OrdersController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
-
+        [Authorize(Users = "john@gmail.com")]
         // GET: Orders
         public ActionResult Index(string searching)
         {

@@ -13,7 +13,7 @@ namespace Backstage.Controllers
     public class EventViewsController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
-
+        [Authorize(Users = "john@gmail.com")]
         // GET: EventViews
         public ActionResult Index(string searching)
         {
