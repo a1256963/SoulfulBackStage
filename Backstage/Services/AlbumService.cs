@@ -30,7 +30,10 @@ namespace Backstage.Services
                                    Company=Album.Company,
                                    Datetime=Album.Datetime,
                                    Album_id=Album.Album_id,
-                                   Price=Album.Price
+                                   Price=Album.Price,
+                                   Hits=Album.Hits,
+                                   WeekHits=Album.WeekHits,
+                                   MonthHits=Album.MonthHits
                                };
             return albumContext.ToList();
         }
