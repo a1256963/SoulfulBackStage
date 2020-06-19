@@ -54,7 +54,7 @@ namespace Backstage.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Album_id,Singer_id,Datetime,Album_Name,Pic,About,Company,Price")] Album albums)
+        public ActionResult Edit([Bind(Include = "Album_id,Singer_id,Datetime,Album_Name,Pic,About,Company,Price,Hits,WeekHits,MonthHits")] Album albums)
         {
             if (ModelState.IsValid)
             {
