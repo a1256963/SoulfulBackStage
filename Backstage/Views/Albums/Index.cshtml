@@ -1,5 +1,8 @@
-﻿@model IEnumerable<Backstage.Models.Album>
-
+﻿@*@model IEnumerable<Backstage.Models.Album>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Album>
 @{
     ViewBag.Title = "Index";
 }
@@ -8,43 +11,48 @@
     {
 
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
-
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 <div class="right_col" role="main" style="padding-top:0">
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    @using (Html.BeginForm("Index", "Albums", FormMethod.Get))
+    {
+        @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:10px">
+    }
     <table class="table">
         <tr class="header">
+
             <th>
-                @Html.DisplayNameFor(model => model.Singer.Name)
+                @Html.ActionLink("Singer", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Datetime)
+                Datetime
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Album_Name)
+                @Html.ActionLink("Album_Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pic)
+                Pic
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.About)
+                About
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company)
+                Company
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hits)
+                Hits
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WeekHits)
+                WeekHits
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MonthHits)
+                MonthHits
             </th>
             <th></th>
         </tr>
@@ -84,11 +92,14 @@
                 </td>
                 <td>
                     <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
-                    <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id  })</button>
+                    <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
                 </td>
             </tr>
         }
 
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
