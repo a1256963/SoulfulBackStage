@@ -9,13 +9,21 @@
 }
 
 <div class="right_col" role="main">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
-    {
-        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
-    }
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <button>@Html.ActionLink("Create New", "Create")</button>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                </div>
+            }
+        </div>
+    </div>
+
     <table class="table">
         <tr class="header">
             <th>
@@ -59,7 +67,7 @@
                     </td>
                     <td>
                         <button>@Html.ActionLink("Edit", "Edit", new { id = item.OrderDetail_id })</button>
-                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id })</button>                        
+                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id })</button>
                     </td>
                 </tr>
             }
