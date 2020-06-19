@@ -16,33 +16,28 @@ namespace Backstage.Controllers
         [Authorize(Users = "john@gmail.com")]
         public ActionResult Index()
         {
-            using (SqlConnection conn = new SqlConnection(@"data source=soulful2020.database.windows.net;initial catalog=soulful2020;persist security info=True;user id=soulful2020@soulful2020.database.windows.net;password=Soulful_2020;MultipleActiveResultSets=True;App=EntityFramework"))
+            AlbumService albumService = new AlbumService();
+
+            double sum = 0;
+            var array = new List<double>();
+            foreach (var m in albumService.GetHit())
             {
-                string sql = "select Album_Name,(Count * od.Price) as TotalAmount from OrderDetail od inner join Album a on od.Album_id=a.Album_id";
-                List<DetailViewModel> orderDetails = conn.Query<DetailViewModel>(sql).ToList();
-
-                AlbumService albumService = new AlbumService();
-
-
-                double sum = 0;
-                var array = new List<double>();
-                foreach (var m in albumService.GetHit())
-                {
-                    sum += m.Hits;
-                }
-
-                foreach (var m in albumService.GetHit())
-                {
-                    //var value = Math.Round(((m.Hits) / sum) * 100, 2);
-                    var value = Math.Floor(((m.Hits) / sum) * 100);
-                    array.Add(value);
-                }
-                ViewData["Hit"] = albumService.GetHit();
-                ViewData["Value"] = array;
-
-                return View(orderDetails);
+                sum += m.Hits;
             }
 
+            foreach (var m in albumService.GetHit())
+            {
+                var value = Math.Floor(((m.Hits) / sum) * 100);
+                array.Add(value);
+            }
+            ViewData["Hit"] = albumService.GetHit();
+            ViewData["Value"] = array;
+           
+            ViewData["Members"] = albumService.GetMembersCount();
+            ViewData["Products"] = albumService.GetProductsCount();
+            ViewData["Total"] = albumService.GetTotal();
+
+            return View(albumService.GetTotalAmount());
         }
 
         public ActionResult About()

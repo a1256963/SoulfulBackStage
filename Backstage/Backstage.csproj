@@ -224,6 +224,7 @@
     <Compile Include="ViewModel\AlbumViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModel.cs" />
     <Compile Include="ViewModel\HitViewModel.cs" />
+    <Compile Include="ViewModel\MembersCount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\Css\table.css" />

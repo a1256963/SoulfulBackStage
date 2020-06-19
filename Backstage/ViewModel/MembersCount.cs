@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Backstage.ViewModel
 {
-    public class HitViewModel
+    public class MembersCount
     {
-        public string Name { get; set; }
-        public double Hits { get; set; }    
+        public string Count { get; set; }
     }
 }
