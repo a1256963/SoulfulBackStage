@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Backstage.Models;
+using PagedList;
 
 namespace Backstage.Controllers
 {
@@ -15,10 +16,47 @@ namespace Backstage.Controllers
         private SoulfulBackStage db = new SoulfulBackStage();
         [Authorize(Users = "john@gmail.com")]
         // GET: Orders
-        public ActionResult Index(string searching)
+
+        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            var order = db.Order.Include(o => o.AspNetUsers);
-            return View(db.Order.Where(x=>x.AspNetUsers.Email.Contains(searching)||x.RecieverName.Contains(searching)||x.RecieverPhone.Contains(searching)||x.RecieverAdress.Contains(searching)||searching==null).ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewBag.LastNameSortParm = sortOrder == "last" ? "last_desc" : "last";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            //(db.Order.Where(x => x.AspNetUsers.Email.Contains(searching) || x.RecieverName.Contains(searching) || x.RecieverPhone.Contains(searching) || x.RecieverAdress.Contains(searching) || searching == null)
+            var workers = from w in db.Order
+                          select w;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                workers = workers.Where(w => w.AspNetUsers.Email.Contains(searchString)
+                || w.RecieverName.Contains(searchString)||w.RecieverPhone.Contains(searchString)||w.RecieverAdress.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    workers = workers.OrderByDescending(w => w.AspNetUsers.Email);
+                    break;
+                case "last_desc":
+                    workers = workers.OrderByDescending(w => w.RecieverName);
+                    break;
+                case "last":
+                    workers = workers.OrderBy(w => w.RecieverName);
+                    break;
+                default:
+                    workers = workers.OrderBy(w => w.AspNetUsers.Email);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(workers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Orders/Details/5

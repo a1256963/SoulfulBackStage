@@ -14,10 +14,6 @@
 <div class="right_col" role="main" style="padding-top:0">
 
     <button>@Html.ActionLink("Create New", "Create")</button>
-    
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     @using (Html.BeginForm("Index", "Albums", FormMethod.Get))
     {
         @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:10px">

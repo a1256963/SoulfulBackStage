@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Backstage.Models.Order>
+﻿@*@model IEnumerable<Backstage.Models.Order>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Order>
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +10,7 @@
 
 @section topCSS{
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 
 <div class="right_col" role="main">
@@ -18,28 +23,28 @@
             @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
             {
                 <div class="search">
-                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
                 </div>
             }
         </div>
     </div>
-   
+
     <table class="table">
         <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+                @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Datetime)
+                Datetime
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RecieverName)
+                @Html.ActionLink("RecieverName", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RecieverPhone)
+                RecieverPhone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RecieverAdress)
+                RecieverAdress
             </th>
             <th></th>
         </tr>
@@ -80,5 +85,8 @@
         }
 
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 

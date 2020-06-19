@@ -11,13 +11,7 @@
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 <div class="right_col" role="main">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
-    {
-        @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:10px">
-    }
+   
 
     <div class="feature">
         <div class="col-lg-6">
@@ -27,7 +21,7 @@
             @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
             {
                 <div class="search">
-                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
                 </div>
             }
         </div>

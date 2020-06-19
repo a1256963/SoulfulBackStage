@@ -52,7 +52,7 @@ namespace Backstage.Controllers
                     workers = workers.OrderBy(w => w.Name);
                     break;
             }
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(workers.ToPagedList(pageNumber, pageSize));
         }

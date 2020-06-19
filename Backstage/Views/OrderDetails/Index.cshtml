@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Backstage.Models.OrderDetail>
+﻿@*@model IEnumerable<Backstage.Models.OrderDetail>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<OrderDetail>
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +10,7 @@
 
 @section topCSS{
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 
 <div class="right_col" role="main">
@@ -18,7 +23,7 @@
             @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
             {
                 <div class="search">
-                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
                 </div>
             }
         </div>
@@ -27,16 +32,16 @@
     <table class="table">
         <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.Album.Album_Name)
+                @Html.ActionLink("Album_Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order.AspNetUsers_Id)
+                @Html.ActionLink("AspNetUsers_Id", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Count)
+                Count
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th></th>
         </tr>
@@ -74,5 +79,8 @@
         }
 
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
