@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Backstage.Models;
+using PagedList;
 
 namespace Backstage.Controllers
 {
@@ -15,10 +16,46 @@ namespace Backstage.Controllers
         private SoulfulBackStage db = new SoulfulBackStage();
         [Authorize(Users = "john@gmail.com")]
         // GET: Styles
-        public ActionResult Index(string searching)
+        //x.Album.Album_Name.Contains(searching)||x.Style_type.Contains(searching)||searching==null
+        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            var style = db.Style.Include(s => s.Album);
-            return View(db.Style.Where(x=>x.Album.Album_Name.Contains(searching)||x.Style_type.Contains(searching)||searching==null).ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewBag.LastNameSortParm = sortOrder == "last" ? "last_desc" : "last";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            var workers = from w in db.Style
+                          select w;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                workers = workers.Where(w => w.Album.Album_Name.Contains(searchString)
+                || w.Style_type.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    workers = workers.OrderByDescending(w => w.Album.Album_Name);
+                    break;
+                case "last_desc":
+                    workers = workers.OrderByDescending(w => w.Style_type);
+                    break;
+                case "last":
+                    workers = workers.OrderBy(w => w.Style_type);
+                    break;
+                default:
+                    workers = workers.OrderBy(w => w.Album.Album_Name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(workers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Styles/Details/5

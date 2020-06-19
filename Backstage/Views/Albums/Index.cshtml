@@ -1,91 +1,102 @@
-﻿@model IEnumerable<Backstage.Models.Album>
-
+﻿@*@model IEnumerable<Backstage.Models.Album>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Album>
 @{
     ViewBag.Title = "Index";
 }
 
 @section topCSS{
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 <div class="right_col" role="main" style="padding-top:0">
 
     <button>@Html.ActionLink("Create New", "Create")</button>
-    
+    @using (Html.BeginForm("Index", "Albums", FormMethod.Get))
+    {
+        @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:10px">
+    }
     <table class="table">
         <tr class="header">
+
             <th>
-                Singer
+                @Html.ActionLink("Singer", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Datetime)
+                Datetime
             </th>
             <th>
-                Album
+                @Html.ActionLink("Album_Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pic)
+                Pic
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.About)
+                About
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company)
+                Company
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th>
-                W_Hits
+                Hits
             </th>
             <th>
-                M_Hits
+                WeekHits
             </th>
             <th>
-                Total_Hits
+                MonthHits
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-    <tr class="context">
-        <td>
-            @Html.DisplayFor(modelItem => item.Singer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datetime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Album_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.About)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WeekHits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MonthHits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hits)
-        </td>
-        <td>
-            <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
-            <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
-        </td>
-    </tr>
+            <tr class="context">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Singer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Album_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.About)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeekHits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonthHits)
+                </td>
+                <td>
+                    <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
+                    <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
+                </td>
+            </tr>
         }
 
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 

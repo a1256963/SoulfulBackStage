@@ -1,12 +1,17 @@
-﻿@model IEnumerable<Backstage.Models.Singer>
-
+﻿@*@model IEnumerable<Backstage.Models.Singer>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Singer>
 @{
     ViewBag.Title = "Index";
 }
 @section topCSS{
-    <link href="~/Asset/Css/table.css" rel="stylesheet"/>
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 <div class="right_col" role="main">
+   
 
     <div class="feature">
         <div class="col-lg-6">
@@ -16,7 +21,7 @@
             @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
             {
                 <div class="search">
-                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
                 </div>
             }
         </div>
@@ -26,19 +31,19 @@
     <table class="table">
         <tr class="header">
             <th>
-                ID
+                Singer_id
             </th>
             <th>
-                Language
+                @Html.ActionLink("Language", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                Gender
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                Country
             </th>
             <th></th>
         </tr>
@@ -78,4 +83,7 @@
             }
         }
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
