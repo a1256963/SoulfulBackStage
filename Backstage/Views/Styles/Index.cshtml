@@ -9,20 +9,29 @@
 }
 
 <div class="right_col" role="main">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @using (Html.BeginForm("Index", "Styles", FormMethod.Get))
-    {
-        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
-    }
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <button>@Html.ActionLink("Create New", "Create")</button>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "Styles", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                </div>            
+            }
+        </div>
+    </div>
+
+    
     <table class="table">
         <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.Album.Album_Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Style_type)
+                Style
             </th>
             <th></th>
         </tr>
@@ -47,7 +56,7 @@
                     </td>
                     <td>
                         <button>@Html.ActionLink("Edit", "Edit", new { id = item.Style_id })</button>
-                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.Style_id })</button>                        
+                        <button>@Html.ActionLink("Delete", "Delete", new { id = item.Style_id })</button>
                     </td>
                 </tr>
             }

@@ -4,23 +4,32 @@
     ViewBag.Title = "Index";
 }
 @section topCSS{
-    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Asset/Css/table.css" rel="stylesheet"/>
 }
 <div class="right_col" role="main">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
-    {
-        @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:10px">
-    }
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <button>@Html.ActionLink("Create New", "Create")</button>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "Singers", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searching")<input type="submit" value="Searching" style="margin-left:15px">
+                </div>
+            }
+        </div>
+    </div>
+    
+
     <table class="table">
         <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.Singer_id)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Language.Language_type)
+                Language
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)

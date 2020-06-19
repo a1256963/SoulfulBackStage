@@ -1,95 +1,49 @@
 ﻿@model IEnumerable<Backstage.ViewModel.AlbumViewModel>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-<table class="table">
-
-    <tr class="header">
-        <th>
-            Album_id
-        </th>
-        <th>
-            Album_Name
-        </th>
-        <th>
-            Company
-        </th>
-        <th>
-            About
-        </th>
-        <th>
-            Singer_id
-        </th>
-        <th>
-            Datetime
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Pic
-        </th>
-        <th>
-            Hits
-        </th>
-        <th>
-            WeekHits
-        </th>
-        <th>
-            MonthHits
-        </th>
-        <th></th>
-    </tr>
 
     @foreach (var m in Model)
     {
+        <tr class="context">
+            <td>
+                @m.Album_id
+            </td>
 
+            <td>
+                @m.Album_Name
+            </td>
+            <td>
+                @m.Company
+            </td>
+            <td>
+                @m.About
+            </td>
+            <td>
+                @m.Singer_id
+            </td>
+            <td>
+                @m.Datetime
+            </td>
+            <td>
+                @m.Price
+            </td>
+            <td>
+                @m.Pic
+            </td>
+            <td>
+                @m.Hits
+            </td>
 
-<tr class="context">
-    <td>
-        @m.Album_id
-    </td>
+            <td>
+                @m.WeekHits
+            </td>
+            <td>
+                @m.MonthHits
+            </td>
+            <td>
+                <button>@Html.ActionLink("Edit", "Edit", new { id = m.Album_id })</button>
+                <button>@Html.ActionLink("Delete", "Delete", new { id = m.Album_id })</button>
+            </td>
+    </tr>
+}
 
-    <td>
-        @m.Album_Name
-    </td>
-    <td>
-        @m.Company
-    </td>
-    <td>
-        @m.About
-    </td>
-    <td>
-        @m.Singer_id
-    </td>
-    <td>
-        @m.Datetime
-    </td>
-    <td>
-        @m.Price
-    </td>
-    <td>
-        @m.Pic
-    </td>
-    <td>
-        @m.Hits
-    </td>
-
-    <td>
-        @m.WeekHits
-    </td>
-    <td>
-        @m.MonthHits
-    </td>
-    <td>
-        <button>@Html.ActionLink("Edit", "Edit", new { id = m.Album_id })</button>
-        <button>@Html.ActionLink("Delete", "Delete", new { id = m.Album_id })</button>
-
-    </td>
-</tr>
-
-
-    }
-</table>
 
 

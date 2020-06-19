@@ -4,26 +4,23 @@
     ViewBag.Title = "Index";
 }
 
-@section topCSS
-    {
-
+@section topCSS{
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
-
 }
 <div class="right_col" role="main" style="padding-top:0">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
+    <button>@Html.ActionLink("Create New", "Create")</button>
+    
     <table class="table">
         <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.Singer.Name)
+                Singer
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Datetime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Album_Name)
+                Album
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pic)
@@ -38,55 +35,55 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hits)
+                W_Hits
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WeekHits)
+                M_Hits
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MonthHits)
+                Total_Hits
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr class="context">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Singer.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Datetime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Album_Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pic)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.About)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WeekHits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MonthHits)
-                </td>
-                <td>
-                    <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
-                    <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id  })</button>
-                </td>
-            </tr>
+    <tr class="context">
+        <td>
+            @Html.DisplayFor(modelItem => item.Singer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.About)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeekHits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthHits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hits)
+        </td>
+        <td>
+            <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
+            <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
+        </td>
+    </tr>
         }
 
     </table>
