@@ -366,21 +366,10 @@
                         label: '專輯銷售金額',
                         data: [@Model[0].TotalAmount, @Model[1].TotalAmount, @Model[2].TotalAmount, @Model[3].TotalAmount, @Model[4].TotalAmount, @Model[5].TotalAmount, @Model[6].TotalAmount],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(145, 125, 54,0.2 )'
+                            "#CA8EFF","#6A6AFF","#97CBFF","#79FF79","#FFFF6F","#FFAF60","#FF2D2D"
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(145, 125, 54, 1)'
+                            "#CA8EFF","#6A6AFF","#97CBFF","#79FF79","#FFFF6F","#FFAF60","#FF2D2D"
                         ],
                         borderWidth: 1
                     }]
@@ -402,14 +391,7 @@
             });
         }
 
-        var sum = @(Hit[0].Hits + Hit[1].Hits + Hit[2].Hits + Hit[3].Hits + Hit[4].Hits + Hit[5].Hits + Hit[6].Hits + Hit[7].Hits + Hit[8].Hits);
-
-
-       
-        
-
-
-
+   
         //Pie Chart
         var ctxPie = document.getElementById("peiChart");
         var pieChart = new Chart(ctxPie, {
@@ -419,15 +401,7 @@
                 datasets: [{
                     data: [@Value[0], @Value[1], @Value[2], @Value[3], @Value[4], @Value[5], @Value[6] ,@Value[7],@Value[8]],
                     backgroundColor: [
-                        window.chartColors.red,
-                        window.chartColors.blue,
-                        window.chartColors.yellow, 
-                        window.chartColors.green,
-                        window.chartColors.purple,
-                        window.chartColors.pink,
-                        window.chartColors.orange,
-                        window.chartColors.grey,
-                        window.chartColors.white
+                        "#FF2D2D", "#FF9224","#FFDC35","#00EC00","#84C1FF","#0066CC","#B766AD","#CF9E9E","#FFCBB3"
                     ]
                 }],
             },
@@ -444,17 +418,14 @@
                    
                 },
                 legend: {
-                    position: 'left',
+                    position: 'right',
                     labels: {
                         fontColor: 'black',
                     }
                 }
             }
         });
-
-
-           
-
+         
     </script>
 }
 
