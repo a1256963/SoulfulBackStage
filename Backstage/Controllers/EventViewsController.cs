@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Backstage.Models;
+using PagedList;
 
 namespace Backstage.Controllers
 {
@@ -15,10 +16,46 @@ namespace Backstage.Controllers
         private SoulfulBackStage db = new SoulfulBackStage();
         [Authorize(Users = "john@gmail.com")]
         // GET: EventViews
-        public ActionResult Index(string searching)
+        //x => x.Name.Contains(searching) || x.Pic.Contains(searching) ||x.Singer.Name.Contains(searching)||x.Adress.Contains(searching)||x.About.Contains(searching)|| searching == null
+        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            var eventView = db.EventView.Include(e => e.Singer);
-            return View(db.EventView.Where(x => x.Name.Contains(searching) || x.Pic.Contains(searching) ||x.Singer.Name.Contains(searching)||x.Adress.Contains(searching)||x.About.Contains(searching)|| searching == null).ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewBag.LastNameSortParm = sortOrder == "last" ? "last_desc" : "last";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            var workers = from w in db.EventView
+                          select w;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                workers = workers.Where(w => w.Name.Contains(searchString)
+                || w.Singer.Name.Contains(searchString)||w.Adress.Contains(searchString)||w.About.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    workers = workers.OrderByDescending(w => w.Name);
+                    break;
+                case "last_desc":
+                    workers = workers.OrderByDescending(w => w.Singer.Name);
+                    break;
+                case "last":
+                    workers = workers.OrderBy(w => w.Singer.Name);
+                    break;
+                default:
+                    workers = workers.OrderBy(w => w.Name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(workers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: EventViews/Details/5

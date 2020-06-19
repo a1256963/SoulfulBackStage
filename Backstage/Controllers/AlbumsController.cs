@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Backstage.Models;
+using PagedList;
 
 namespace Backstage.Controllers
 {
@@ -15,10 +16,45 @@ namespace Backstage.Controllers
         private SoulfulBackStage db = new SoulfulBackStage();
         [Authorize(Users = "john@gmail.com")]
         // GET: Albums
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            var album = db.Album.Include(a => a.Singer);
-            return View(album.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewBag.LastNameSortParm = sortOrder == "last" ? "last_desc" : "last";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            var workers = from w in db.Album
+                          select w;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                workers = workers.Where(w => w.Album_Name.Contains(searchString)
+                || w.Singer.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    workers = workers.OrderByDescending(w => w.Album_Name);
+                    break;
+                case "last_desc":
+                    workers = workers.OrderByDescending(w => w.Singer.Name);
+                    break;
+                case "last":
+                    workers = workers.OrderBy(w => w.Album_Name);
+                    break;
+                default:
+                    workers = workers.OrderBy(w => w.Singer.Name);
+                    break;
+            }
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(workers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Albums/Details/5
