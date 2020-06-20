@@ -11,13 +11,21 @@
     <link href="~/Asset/Css/table.css" rel="stylesheet" />
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
-<div class="right_col" role="main" style="padding-top:0">
+<div class="right_col" role="main">
 
-    <button>@Html.ActionLink("Create New", "Create")</button>
-    @using (Html.BeginForm("Index", "Albums", FormMethod.Get))
-    {
-        @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:10px">
-    }
+    <div class="feature">
+        <div class="col-lg-6">
+            <button>@Html.ActionLink("Create New", "Create")</button>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "Albums", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
+                </div>
+            }
+        </div>
+    </div>
     <table class="table">
         <tr class="header">
 
