@@ -48,12 +48,13 @@ namespace Backstage.Services
             SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
 
             var albumContext = from Album in AlbumRepository.GetAll().OrderBy(x => x.Album_Name)
+                               orderby Album.Hits descending
                                select new HitViewModel
                                {
                                    Name = Album.Album_Name,
                                    Hits = Album.Hits
                                };
-            return albumContext.ToList();
+            return albumContext.Take(10).ToList();
         }
 
         public List<HitViewModel> GetWeekHits()
@@ -62,12 +63,13 @@ namespace Backstage.Services
             SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
 
             var albumContext = from Album in AlbumRepository.GetAll().OrderBy(x => x.Album_Name)
+                               orderby Album.WeekHits descending
                                select new HitViewModel
                                {
                                    Name = Album.Album_Name,
                                    WeekHits = Album.WeekHits
                                };
-            return albumContext.ToList();
+            return albumContext.Take(10).ToList();
         }
 
         public List<HitViewModel> GetMonthHits()
@@ -76,26 +78,34 @@ namespace Backstage.Services
             SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
 
             var albumContext = from Album in AlbumRepository.GetAll().OrderBy(x => x.Album_Name)
+                               orderby Album.MonthHits descending
                                select new HitViewModel
                                {
                                    Name = Album.Album_Name,
                                    MonthHits = Album.MonthHits
                                };
-            return albumContext.ToList();
+            return albumContext.Take(10).ToList();
         }
 
 
 
-        public List<DetailViewModel> GetTotalAmount()
+        public List<DetailViewModel> GetThisMonth()
         {
             using (SqlConnection conn = new SqlConnection(connString))
             {
-                string sql = "SELECT " +
-                             "Album_Name," +
+                string sql = "DECLARE @start AS  DATETIME " +
+                             "SET @start = DATEADD(m, DATEDIFF(m, 0, GETDATE()), 0) " +
+                             "DECLARE @end AS DATETIME " +
+                             "SET @end = DATEADD(DAY, -1, DATEADD(m, DATEDIFF(m, 0, GETDATE()) + 1, 0)) " +
+                             "SELECT TOP 10 " +
+                             "Album_Name, " +
                              "SUM(od.Count * od.Price) AS TotalAmount " +
                              "FROM Album a " +
                              "INNER JOIN OrderDetail od ON od.Album_id = a.Album_id " +
-                             "GROUP BY Album_Name";
+                             "INNER JOIN[dbo].[Order] o ON  od.Order_id = o.Order_id " +
+                             "WHERE o.Datetime BETWEEN @start AND @end " +
+                             "GROUP BY Album_Name " +
+                             "ORDER BY TotalAmount DESC";
 
                 List<DetailViewModel> orderDetails = conn.Query<DetailViewModel>(sql).ToList();
 

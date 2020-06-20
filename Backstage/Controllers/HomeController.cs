@@ -71,7 +71,7 @@ namespace Backstage.Controllers
             ViewData["Products"] = albumService.GetProductsCount();
             ViewData["Total"] = albumService.GetTotal();
 
-            return View(albumService.GetTotalAmount());
+            return View(albumService.GetThisMonth());
         }
 
         public ActionResult About()
