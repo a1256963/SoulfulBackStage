@@ -70,7 +70,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Hits, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
                 @Html.ValidationMessageFor(model => model.Hits, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.WeekHits, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WeekHits, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.WeekHits, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
                 @Html.ValidationMessageFor(model => model.WeekHits, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -86,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MonthHits, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MonthHits, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MonthHits, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
                 @Html.ValidationMessageFor(model => model.MonthHits, "", new { @class = "text-danger" })
             </div>
         </div>

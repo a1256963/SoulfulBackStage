@@ -76,7 +76,7 @@ namespace Backstage.Controllers
         public ActionResult Create()
         {
             ViewBag.Album_id = new SelectList(db.Album, "Album_id", "Album_Name");
-            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "AspNetUsers_Id");
+            ViewBag.Order_id = new SelectList(db.Order, "Order_id", "Order_id");
             return View();
         }
 
