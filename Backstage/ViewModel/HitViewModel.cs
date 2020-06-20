@@ -9,5 +9,7 @@ namespace Backstage.ViewModel
     {
         public string Name { get; set; }
         public double Hits { get; set; }
+        public double WeekHits { get; set; }
+        public double MonthHits { get; set; }
     }
 }
