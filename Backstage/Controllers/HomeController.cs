@@ -18,6 +18,7 @@ namespace Backstage.Controllers
         {
             AlbumService albumService = new AlbumService();
 
+            //Hits
             double sum = 0;
             var array = new List<double>();
             foreach (var m in albumService.GetHit())
@@ -32,7 +33,40 @@ namespace Backstage.Controllers
             }
             ViewData["Hit"] = albumService.GetHit();
             ViewData["Value"] = array;
-           
+
+            //WeekHits
+            double weeksum = 0;
+            var week_array = new List<double>();
+            foreach (var i in albumService.GetWeekHits())
+            {
+                weeksum += i.WeekHits;
+            }
+
+            foreach (var i in albumService.GetWeekHits())
+            {
+                var week_value = Math.Floor(((i.WeekHits) / weeksum) * 100);
+                week_array.Add(week_value);
+            }
+            ViewData["WeekHit"] = albumService.GetWeekHits();
+            ViewData["WeekValue"] = week_array;
+
+            //MonthHits
+            double monthsum = 0;
+            var month_array = new List<double>();
+            foreach (var j in albumService.GetMonthHits())
+            {
+                monthsum += j.MonthHits;
+            }
+
+            foreach (var j in albumService.GetMonthHits())
+            {
+                var month_value = Math.Floor(((j.MonthHits) / monthsum) * 100);
+                month_array.Add(month_value);
+            }
+            ViewData["MonthHit"] = albumService.GetMonthHits();
+            ViewData["MonthValue"] = month_array;
+
+
             ViewData["Members"] = albumService.GetMembersCount();
             ViewData["Products"] = albumService.GetProductsCount();
             ViewData["Total"] = albumService.GetTotal();

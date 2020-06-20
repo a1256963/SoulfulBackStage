@@ -56,7 +56,35 @@ namespace Backstage.Services
             return albumContext.ToList();
         }
 
-       
+        public List<HitViewModel> GetWeekHits()
+        {
+            SoulfulBackStage context = new SoulfulBackStage();
+            SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
+
+            var albumContext = from Album in AlbumRepository.GetAll().OrderBy(x => x.Album_Name)
+                               select new HitViewModel
+                               {
+                                   Name = Album.Album_Name,
+                                   WeekHits = Album.WeekHits
+                               };
+            return albumContext.ToList();
+        }
+
+        public List<HitViewModel> GetMonthHits()
+        {
+            SoulfulBackStage context = new SoulfulBackStage();
+            SoulfulRepository<Album> AlbumRepository = new SoulfulRepository<Album>(context);
+
+            var albumContext = from Album in AlbumRepository.GetAll().OrderBy(x => x.Album_Name)
+                               select new HitViewModel
+                               {
+                                   Name = Album.Album_Name,
+                                   MonthHits = Album.MonthHits
+                               };
+            return albumContext.ToList();
+        }
+
+
 
         public List<DetailViewModel> GetTotalAmount()
         {
