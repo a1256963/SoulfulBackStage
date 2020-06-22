@@ -9,13 +9,13 @@
         }
     </style>
 
-<div class="row"style="padding-top:300px;padding-left:450px">
+<div class="row"style="padding-top:15%;padding-left:30%">
     <div class="col-md-12">
         
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                <h1 style="padding-left:245px;color:#7f6649;"><b>管理員登入</b></h1>
+                <h1 style="padding-left:22%;color:#7f6649;"><b>管理員登入</b></h1>
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group" style="color:#7f6649;font-size: 14px;">
@@ -40,8 +40,7 @@
                     </div>
                 </div>
             </div>*@
-                <div class="form-group" style="        padding-left: 135px
-">
+                <div class="form-group" style="padding-left:13%">
                     <div class="col-md-offset-2 col-md-4">
                         <input type="submit" value="登入" class="btn btn-default" style="color:#000000" />
                     </div>
