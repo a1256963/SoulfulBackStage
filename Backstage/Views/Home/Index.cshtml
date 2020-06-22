@@ -101,15 +101,15 @@
             var myChart = new Chart(context, {
                 type: barChartDirection,
                 data: {
-                    labels: ['@Model[0].Album_Name', '@Model[1].Album_Name', '@Model[2].Album_Name', '@Model[3].Album_Name', '@Model[4].Album_Name', '@Model[5].Album_Name', '@Model[6].Album_Name','@Model[7].Album_Name','@Model[8].Album_Name'],
+                    labels: ['@Model[0].Album_Name', '@Model[1].Album_Name', '@Model[2].Album_Name', '@Model[3].Album_Name', '@Model[4].Album_Name', '@Model[5].Album_Name', '@Model[6].Album_Name','@Model[7].Album_Name','@Model[8].Album_Name','@Model[9].Album_Name'],
                     datasets: [{
                         label: '專輯銷售金額',
-                        data: [@Model[0].TotalAmount, @Model[1].TotalAmount, @Model[2].TotalAmount, @Model[3].TotalAmount, @Model[4].TotalAmount, @Model[5].TotalAmount, @Model[6].TotalAmount,@Model[7].TotalAmount,@Model[8].TotalAmount],
+                        data: [@Model[0].TotalAmount, @Model[1].TotalAmount, @Model[2].TotalAmount, @Model[3].TotalAmount, @Model[4].TotalAmount, @Model[5].TotalAmount, @Model[6].TotalAmount,@Model[7].TotalAmount,@Model[8].TotalAmount,@Model[9].TotalAmount],
                         backgroundColor: [
-                           "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3"
+                           "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3","#FFD9EC"
                         ],
                         borderColor: [
-                          "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3"
+                          "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3","#FFD9EC"
                         ],
                         borderWidth: 1
                     }]
@@ -136,11 +136,11 @@
         var pieChart = new Chart(ctxDoughnut, {
             type: 'doughnut',
             data: {
-                labels: ['@Hit[0].Name', '@Hit[1].Name', '@Hit[2].Name', '@Hit[3].Name', '@Hit[4].Name', '@Hit[5].Name' ,'@Hit[6].Name','@Hit[7].Name','@Hit[8].Name'],
+                labels: ['@Hit[0].Name', '@Hit[1].Name', '@Hit[2].Name', '@Hit[3].Name', '@Hit[4].Name', '@Hit[5].Name' ,'@Hit[6].Name','@Hit[7].Name','@Hit[8].Name','@Hit[9].Name'],
                 datasets: [{
-                    data: [@Value[0], @Value[1], @Value[2], @Value[3], @Value[4], @Value[5], @Value[6] ,@Value[7],@Value[8]],
+                    data: [@Value[0], @Value[1], @Value[2], @Value[3], @Value[4], @Value[5], @Value[6] ,@Value[7],@Value[8],@Value[9]],
                     backgroundColor: [
-                        "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3"
+                        "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3",	"#FFD9EC"
                     ]
                 }],
             },
@@ -170,11 +170,11 @@
         var pieChart = new Chart(ctxDoughnut, {
             type: 'doughnut',
             data: {
-                labels: ['@WeekHit[0].Name', '@WeekHit[1].Name', '@WeekHit[2].Name', '@WeekHit[3].Name', '@WeekHit[4].Name', '@WeekHit[5].Name' ,'@WeekHit[6].Name','@WeekHit[7].Name','@WeekHit[8].Name'],
+                labels: ['@WeekHit[0].Name', '@WeekHit[1].Name', '@WeekHit[2].Name', '@WeekHit[3].Name', '@WeekHit[4].Name', '@WeekHit[5].Name' ,'@WeekHit[6].Name','@WeekHit[7].Name','@WeekHit[8].Name','@WeekHit[9].Name'],
                 datasets: [{
-                    data: [@WeekValue[0], @WeekValue[1],@WeekValue[2] ,@WeekValue[3] ,@WeekValue[4] ,@WeekValue[5] , @WeekValue[6] ,@WeekValue[7],@WeekValue[8]],
+                    data: [@WeekValue[0], @WeekValue[1],@WeekValue[2] ,@WeekValue[3] ,@WeekValue[4] ,@WeekValue[5] , @WeekValue[6] ,@WeekValue[7],@WeekValue[8],@WeekValue[9]],
                     backgroundColor: [
-                       "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3"
+                       "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3","#FFD9EC"
                     ]
                 }],
             },
@@ -205,11 +205,11 @@
         var pieChart = new Chart(ctxDoughnut, {
             type: 'doughnut',
             data: {
-                labels: ['@MonthHit[0].Name', '@MonthHit[1].Name', '@MonthHit[2].Name', '@MonthHit[3].Name', '@MonthHit[4].Name', '@MonthHit[5].Name' ,'@MonthHit[6].Name','@MonthHit[7].Name','@MonthHit[8].Name'],
+                labels: ['@MonthHit[0].Name', '@MonthHit[1].Name', '@MonthHit[2].Name', '@MonthHit[3].Name', '@MonthHit[4].Name', '@MonthHit[5].Name' ,'@MonthHit[6].Name','@MonthHit[7].Name','@MonthHit[8].Name','@MonthHit[9].Name'],
                 datasets: [{
-                    data: [@MonthValue[0], @MonthValue[1],@MonthValue[2] ,@MonthValue[3] ,@MonthValue[4] ,@MonthValue[5] , @MonthValue[6] ,@MonthValue[7],@MonthValue[8]],
+                    data: [@MonthValue[0], @MonthValue[1],@MonthValue[2] ,@MonthValue[3] ,@MonthValue[4] ,@MonthValue[5] , @MonthValue[6] ,@MonthValue[7],@MonthValue[8],@MonthValue[9]],
                     backgroundColor: [
-                        "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3"
+                        "#FF7575", "#FFBB77","#FFE66F","#93FF93","#ACD6FF","#2894FF","#D2A2CC","#CF9E9E","#FFCBB3","#FFD9EC"
                     ]
                 }],
             },

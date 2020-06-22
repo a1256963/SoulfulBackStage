@@ -21,14 +21,14 @@ namespace Backstage.Controllers
             //Hits
             double sum = 0;
             var array = new List<double>();
-            foreach (var m in albumService.GetHit())
+            foreach (var all in albumService.GetHit())
             {
-                sum += m.Hits;
+                sum += all.Hits;
             }
 
-            foreach (var m in albumService.GetHit())
+            foreach (var all in albumService.GetHit())
             {
-                var value = Math.Floor(((m.Hits) / sum) * 100);
+                var value = Math.Floor(((all.Hits) / sum) * 100);
                 array.Add(value);
             }
             ViewData["Hit"] = albumService.GetHit();
@@ -37,14 +37,14 @@ namespace Backstage.Controllers
             //WeekHits
             double weeksum = 0;
             var week_array = new List<double>();
-            foreach (var i in albumService.GetWeekHits())
+            foreach (var week in albumService.GetWeekHits())
             {
-                weeksum += i.WeekHits;
+                weeksum += week.WeekHits;
             }
 
-            foreach (var i in albumService.GetWeekHits())
+            foreach (var week in albumService.GetWeekHits())
             {
-                var week_value = Math.Floor(((i.WeekHits) / weeksum) * 100);
+                var week_value = Math.Floor(((week.WeekHits) / weeksum) * 100);
                 week_array.Add(week_value);
             }
             ViewData["WeekHit"] = albumService.GetWeekHits();
@@ -53,14 +53,14 @@ namespace Backstage.Controllers
             //MonthHits
             double monthsum = 0;
             var month_array = new List<double>();
-            foreach (var j in albumService.GetMonthHits())
+            foreach (var month in albumService.GetMonthHits())
             {
-                monthsum += j.MonthHits;
+                monthsum += month.MonthHits;
             }
 
-            foreach (var j in albumService.GetMonthHits())
+            foreach (var month in albumService.GetMonthHits())
             {
-                var month_value = Math.Floor(((j.MonthHits) / monthsum) * 100);
+                var month_value = Math.Floor(((month.MonthHits) / monthsum) * 100);
                 month_array.Add(month_value);
             }
             ViewData["MonthHit"] = albumService.GetMonthHits();
