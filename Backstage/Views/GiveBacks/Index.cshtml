@@ -33,7 +33,7 @@
                 @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.LastNameSortParm })
+                Name
             </th>
             <th>
                 Subject
@@ -42,7 +42,7 @@
                 Message
             </th>
             <th>
-                Status
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th></th>
         </tr>
