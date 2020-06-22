@@ -233,6 +233,7 @@
     <Compile Include="ViewModel\MembersCount.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Css\Album.css" />
     <Content Include="Asset\Css\GiveBack.css" />
     <Content Include="Asset\Css\table.css" />
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
@@ -376,14 +377,9 @@
     <Content Include="Views\Languages\Details.cshtml" />
     <Content Include="Views\Languages\Edit.cshtml" />
     <Content Include="Views\Languages\Index.cshtml" />
-    <Content Include="Views\Album\Albums.cshtml" />
-    <Content Include="Views\Album\AlbumPartialView.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Home\Pie.cshtml" />
-    <Content Include="Views\Album\Create.cshtml" />
-    <Content Include="Views\Album\Delete.cshtml" />
     <Content Include="Views\GiveBacks\Create.cshtml" />
     <Content Include="Views\GiveBacks\Delete.cshtml" />
     <Content Include="Views\GiveBacks\Details.cshtml" />

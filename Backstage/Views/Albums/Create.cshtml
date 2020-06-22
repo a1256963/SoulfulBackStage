@@ -3,125 +3,171 @@
 @{
     ViewBag.Title = "Create";
 }
+@section topCSS{
+
+    <link href="~/Asset/Css/Album.css" rel="stylesheet" />
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="right_col" role="main" style="padding-top:0">
-        <h4>Album</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Singer_id, "Singer_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Singer_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Singer_id, "", new { @class = "text-danger" })
+<div class="right_col" role="main">
+    <h4>Album</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row Album-row " >
+            <div class="Album-message">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Singer_id, "Singer_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.DropDownList("Singer_id", null, htmlAttributes: new { @class = "form-control" })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Singer_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Datetime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Datetime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Album_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Album_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Album_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pic, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Pic, new { htmlAttributes = new { @class = "form-control", @id = "asd" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Pic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Hits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Hits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WeekHits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.WeekHits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.WeekHits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MonthHits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.MonthHits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.MonthHits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="Alubm-pic">
+                <div id="upload" class=" ">
+                    <hr />
+                    <!-- 選取圖片的 input -->
+                    <div class="form-group">
+                        <label for="upload" style="margin-right:50px">選擇上傳圖檔</label>
+                        <div>
+                            <input id="upload" type="file" accept="image/*" v-on:change="showFile">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">圖片名稱</label>
+                        <div class="">
+                            <input class="form-control" id="des" type="text" v-model="des" v-on:keyup.13="submit" required>
+
+                        </div>
+                    </div>
+                    <!-- 圖片標題 -->
+
+                    <div class="form-group">
+                        <label for="des">圖片描述</label>
+                        <div class="">
+                            <input class="form-control" id="des" type="text" v-model="des" v-on:keyup.13="submit" required>
+
+                        </div>
+                    </div>
+
+                    <!-- 圖片描述 -->
+                    <!-- 上傳按鈕 -->
+                    <button class="btn btn-primary" type="button" v-on:click="submit">上傳</button>
+                    <div class="form-group" style="margin:30px 0 0 240px">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <!-- 引用js -->
+
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Datetime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Datetime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Album_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Album_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Album_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pic, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Pic, new { htmlAttributes = new { @class = "form-control",@id="asd" } })
-                @Html.ValidationMessageFor(model => model.Pic, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hits, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.WeekHits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.WeekHits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WeekHits, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MonthHits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MonthHits, new { htmlAttributes = new { @class = "form-control"} })
-                @Html.ValidationMessageFor(model => model.MonthHits, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-        <div id="upload" class="form-group">
-            <hr />
-            <!-- 選取圖片的 input -->
-            <label for="upload">選擇上傳圖檔</label>
-            <input id="upload" type="file" accept="image/*" v-on:change="showFile">
-
-            <!-- 圖片標題 -->
-            <label for="title">圖片名稱</label>
-            <input class="form-control" id="title" type="text" v-model="title" v-on:keyup.13="submit" required>
-
-            <!-- 圖片描述 -->
-            <label for="des">圖片描述</label>
-            <input class="form-control" id="des" type="text" v-model="des" v-on:keyup.13="submit" required>
-
-            <!-- 上傳按鈕 -->
-            <button class="btn btn-primary" type="button" v-on:click="submit">上傳</button>
-
-            <!-- 引用js -->
-
-        </div>
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-
     </div>
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
 }
 @section endJS
 {
