@@ -233,6 +233,7 @@
     <Compile Include="ViewModel\MembersCount.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Css\Album.css" />
     <Content Include="Asset\Css\table.css" />
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
     <Content Include="Backstage\bootstrap.min.css" />
