@@ -43,10 +43,10 @@ namespace Backstage.Controllers
                     workers = workers.OrderByDescending(w => w.Email);
                     break;
                 case "last_desc":
-                    workers = workers.OrderByDescending(w => w.Name);
+                    workers = workers.OrderByDescending(w => w.Status);
                     break;
                 case "last":
-                    workers = workers.OrderBy(w => w.Name);
+                    workers = workers.OrderBy(w => w.Status);
                     break;
                 default:
                     workers = workers.OrderBy(w => w.Email);
