@@ -42,9 +42,6 @@
                 Pic
             </th>
             <th>
-                About
-            </th>
-            <th>
                 Company
             </th>
             <th>
@@ -78,9 +75,6 @@
                     @Html.DisplayFor(modelItem => item.Pic)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.About)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Company)
                 </td>
                 <td>
@@ -98,6 +92,7 @@
                 <td>
                     <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
                     <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
+                    <button>@Html.ActionLink("Details", "Details", new { id = item.Album_id })</button>
                 </td>
             </tr>
         }
