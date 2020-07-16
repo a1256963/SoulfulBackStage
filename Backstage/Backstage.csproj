@@ -235,7 +235,9 @@
   <ItemGroup>
     <Content Include="Asset\Css\Album.css" />
     <Content Include="Asset\Css\GiveBack.css" />
+    <Content Include="Asset\Css\main.css" />
     <Content Include="Asset\Css\table.css" />
+    <Content Include="Asset\Images\a12.jpg" />
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
     <Content Include="Backstage\bootstrap.min.css" />
     <Content Include="Backstage\custom.min.css" />

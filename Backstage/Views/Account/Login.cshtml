@@ -1,66 +1,57 @@
 ﻿@using Backstage.Models
+
 @model LoginViewModel
 @{
     ViewBag.Title = "登入";
 }
-    <style>
-        .body{
-            background-color:turquoise;
-        }
-    </style>
+@section topCSS{
+    <link href="~/Asset/Css/main.css" rel="stylesheet" />
 
-<div class="row"style="padding-top:15%;padding-left:30%">
-    <div class="col-md-12">
-        
-        <section id="loginForm">
+}
+<style>
+    .body {
+        background-color: turquoise;
+    }
+</style>
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url(../Asset/Images/a12.jpg);">
+        <div class="wrap-login100 p-t-30 p-b-50">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                <h1 style="padding-left:22%;color:#7f6649;"><b>管理員登入</b></h1>
+                <span class="login100-form-title p-b-41" style="color:bisque">
+                    Account Login
+                </span>
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group" style="color:#7f6649;font-size: 14px;">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+
+                <form class="login100-form validate-form">
+
+                    <div style="margin-top:20px">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-12 control-label" })
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group" style="color:#7f6649;font-size: 14px;">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+
+                    <div style="margin-top:20px">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2  col-12 control-label" })
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                @*<div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="checkbox" style="color:#ffffff">
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                        @Html.LabelFor(m => m.RememberMe)
+
+                    <div class="container-login100-form-btn">
+                        <div class="col-md-offset-2 col-md-4 ">
+                            <input type="submit" value="登入" class="btn btn-success" style="margin-top:20%" />
+                        </div>
                     </div>
-                </div>
-            </div>*@
-                <div class="form-group" style="padding-left:13%">
-                    <div class="col-md-offset-2 col-md-4">
-                        <input type="submit" value="登入" class="btn btn-default" style="color:#000000" />
-                    </div>
-                </div>
-                @*<p  style="color:#ffffff">
-                @Html.ActionLink("註冊", "Register","",new { @class="colorList"})
-            </p>*@
-                @* 只要您的密碼重設功能能夠進行帳戶確認，就啟用此項
-            <p>
-                @Html.ActionLink("忘記密碼?", "ForgotPassword")
-            </p>*@
+                </form>
             }
-        </section>
+        </div>
     </div>
-    @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
 </div>
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

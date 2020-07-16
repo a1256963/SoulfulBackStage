@@ -6,7 +6,7 @@ namespace Backstage.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "電子郵件")]
+        [Display(Name = "帳號")]
         public string Email { get; set; }
     }
 
@@ -42,14 +42,14 @@ namespace Backstage.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "電子郵件")]
+        [Display(Name = "帳號")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "電子郵件")]
+        [Display(Name = "帳號")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -66,7 +66,7 @@ namespace Backstage.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "電子郵件")]
+        [Display(Name = "帳號")]
         public string Email { get; set; }
 
         [Required]
@@ -85,7 +85,7 @@ namespace Backstage.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "電子郵件")]
+        [Display(Name = "帳號")]
         public string Email { get; set; }
 
         [Required]

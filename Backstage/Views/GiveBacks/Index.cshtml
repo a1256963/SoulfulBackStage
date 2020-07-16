@@ -15,13 +15,13 @@
 
     <div class="feature">
         <div class="col-lg-6">
-            <button>@Html.ActionLink("Create New", "Create")</button>
+            <p>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })</p>
         </div>
         <div class="col-lg-6">
             @using (Html.BeginForm("Index", "GiveBacks", FormMethod.Get))
             {
                 <div class="search">
-                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px;color:#ffffff" class="btn btn-dark">
                 </div>
             }
         </div>
@@ -75,7 +75,7 @@
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td>
-                        <button class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+                       @Html.ActionLink("Edit", "Edit", new { id = item.Id },new { @class = "btn btn-success" })
                     </td>
                 </tr>
             }

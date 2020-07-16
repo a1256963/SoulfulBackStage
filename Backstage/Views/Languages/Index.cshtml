@@ -12,7 +12,7 @@
     <!-- top tiles -->
     <div class="row" style="display: inline-block;height:1381px">
         
-        <button>@Html.ActionLink("Create New", "Create")</button>
+        <p>@Html.ActionLink("Create New", "Create",null,new{ @class = "btn btn-warning" })</p>
        
                 <table class="table">
                     <tr class="header">
@@ -29,8 +29,8 @@
                                 @Html.DisplayFor(modelItem => item.Language_type)
                             </td>
                             <td>
-                                <button>@Html.ActionLink("Edit", "Edit", new { id = item.Language_id })</button>
-                                <button>@Html.ActionLink("Delete", "Delete", new { id = item.Language_id })</button>
+                               @Html.ActionLink("Edit", "Edit", new { id = item.Language_id },new { @class = "btn btn-success" })
+                               @Html.ActionLink("Delete", "Delete", new { id = item.Language_id },new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
