@@ -90,9 +90,9 @@
                     @Html.DisplayFor(modelItem => item.MonthHits)
                 </td>
                 <td>
-                    <button>@Html.ActionLink("Edit", "Edit", new { id = item.Album_id })</button>
-                    <button>@Html.ActionLink("Delete", "Delete", new { id = item.Album_id })</button>
-                    <button>@Html.ActionLink("Details", "Details", new { id = item.Album_id })</button>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Album_id },new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Album_id },new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Album_id },new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

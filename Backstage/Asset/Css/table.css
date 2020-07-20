@@ -13,10 +13,7 @@
     margin-bottom: 40px;
 }
 
-button{
-    background-color: 
-      
-}
+
 form{
     display: flex;
 }
@@ -24,3 +21,12 @@ form{
 .search{
     margin-left: auto;
 }
+
+
+a.btn-success, a.btn-danger, a.btn-warning, a.btn-primary{
+    width: 100px;
+    height: 30px;
+}
+
+
+
