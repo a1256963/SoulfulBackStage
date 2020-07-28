@@ -28,7 +28,7 @@ namespace Backstage.Models
         [StringLength(50)]
         public string RecieverName { get; set; }
 
-        public int RecieverPhone { get; set; }
+        public string RecieverPhone { get; set; }
 
         [Required]
         [StringLength(50)]

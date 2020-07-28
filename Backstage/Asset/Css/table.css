@@ -1,0 +1,32 @@
+﻿.header {
+    background-color: #e3ded5;
+    color: #7f6649;
+    font-size: 14px;
+}
+
+.context {
+    justify-content:center;
+    color: #333333;
+}
+
+.feature{
+    margin-bottom: 40px;
+}
+
+
+form{
+    display: flex;
+}
+
+.search{
+    margin-left: auto;
+}
+
+
+a.btn-success, a.btn-danger, a.btn-warning, a.btn-primary{
+    width: 100px;
+    height: 30px;
+}
+
+
+

@@ -1,0 +1,55 @@
+﻿@model Backstage.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="right_col" role="main" >
+    <h4>OrderDetail</h4>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Album.Album_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Album.Album_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.AspNetUsers_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.AspNetUsers_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

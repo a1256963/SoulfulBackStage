@@ -1,0 +1,42 @@
+﻿@model Backstage.Models.Like
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Like</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Song.Song_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Song.Song_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Like_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

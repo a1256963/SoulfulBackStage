@@ -1,0 +1,92 @@
+﻿@*@model IEnumerable<Backstage.Models.Order>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<div class="right_col" role="main">
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <p>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })</p>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px;color:#ffffff" class="btn btn-dark">
+                </div>
+            }
+        </div>
+    </div>
+
+    <table class="table">
+        <tr class="header">
+            <th>
+                @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
+            </th>
+            <th>
+                Datetime
+            </th>
+            <th>
+                @Html.ActionLink("RecieverName", "Index", new { sortOrder = ViewBag.LastNameSortParm })
+            </th>
+            <th>
+                RecieverPhone
+            </th>
+            <th>
+                RecieverAdress
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5" style="color:red">
+                    暫無資料
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr class="context">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Datetime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecieverName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecieverPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecieverAdress)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Order_id },new { @class = "btn btn-success" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Order_id },new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

@@ -7,17 +7,54 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Backstage.Models;
+using PagedList;
 
 namespace Backstage.Controllers
 {
     public class GiveBacksController : Controller
     {
         private SoulfulBackStage db = new SoulfulBackStage();
-
+        [Authorize(Users = "john@gmail.com")]
         // GET: GiveBacks
-        public ActionResult Index(string searching)
+        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            return View(db.GiveBacks.Where(x=>x.Name.Contains(searching)||x.Email.Contains(searching)||x.Subject.Contains(searching)||x.Message.Contains(searching)||x.Status.Contains(searching)|| searching==null).ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_desc" : "";
+            ViewBag.LastNameSortParm = sortOrder == "last" ? "last_desc" : "last";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            var workers = from w in db.GiveBacks
+                          select w;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                workers = workers.Where(w => w.Email.Contains(searchString)
+                || w.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_desc":
+                    workers = workers.OrderByDescending(w => w.Email);
+                    break;
+                case "last_desc":
+                    workers = workers.OrderByDescending(w => w.Status);
+                    break;
+                case "last":
+                    workers = workers.OrderBy(w => w.Status);
+                    break;
+                default:
+                    workers = workers.OrderBy(w => w.Email);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(workers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: GiveBacks/Details/5

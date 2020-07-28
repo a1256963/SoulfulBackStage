@@ -24,5 +24,10 @@ namespace Backstage.ViewModel
         public string Company { get; set; }
 
         public decimal Price { get; set; }
+        public int Hits { get; set; }
+
+        public int WeekHits { get; set; }
+
+        public int MonthHits { get; set; }
     }
 }

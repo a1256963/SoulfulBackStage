@@ -41,6 +41,10 @@ namespace Backstage.Models
 
         public int Hits { get; set; }
 
+        public int WeekHits { get; set; }
+
+        public int MonthHits { get; set; }
+
         public virtual Singer Singer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

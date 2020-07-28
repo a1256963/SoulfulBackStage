@@ -1,0 +1,86 @@
+﻿@*@model IEnumerable<Backstage.Models.OrderDetail>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<div class="right_col" role="main">
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <p>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })</p>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "OrderDetails", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px;color:#ffffff" class="btn btn-dark">
+                </div>
+            }
+        </div>
+    </div>
+
+    <table class="table">
+        <tr class="header">
+            <th>
+                @Html.ActionLink("Album_Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("AspNetUsers_Id", "Index", new { sortOrder = ViewBag.LastNameSortParm })
+            </th>
+            <th>
+                Count
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5" style="color:red">
+                    暫無資料
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr class="context">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Album.Album_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order.AspNetUsers_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                       @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetail_id },new { @class = "btn btn-success" })
+                       @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetail_id },new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

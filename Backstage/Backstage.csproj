@@ -47,7 +47,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Imgur.API, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -173,11 +185,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
+    <Compile Include="Controllers\EventViewsController.cs" />
     <Compile Include="Controllers\GiveBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
+    <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\SingersController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
+    <Compile Include="Controllers\StylesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,12 +207,14 @@
     <Compile Include="Models\AspNetUserLogins.cs" />
     <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventView.cs" />
     <Compile Include="Models\GiveBacks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Singer.cs" />
@@ -207,8 +228,16 @@
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\AlbumViewModel.cs" />
+    <Compile Include="ViewModel\DetailViewModel.cs" />
+    <Compile Include="ViewModel\HitViewModel.cs" />
+    <Compile Include="ViewModel\MembersCount.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Css\Album.css" />
+    <Content Include="Asset\Css\GiveBack.css" />
+    <Content Include="Asset\Css\main.css" />
+    <Content Include="Asset\Css\table.css" />
+    <Content Include="Asset\Images\a12.jpg" />
     <Content Include="Backstage\bootstrap-progressbar-3.3.4.min.css" />
     <Content Include="Backstage\bootstrap.min.css" />
     <Content Include="Backstage\custom.min.css" />
@@ -251,6 +280,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\nprogress.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -281,6 +311,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Backstage20200616061659 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -348,14 +379,9 @@
     <Content Include="Views\Languages\Details.cshtml" />
     <Content Include="Views\Languages\Edit.cshtml" />
     <Content Include="Views\Languages\Index.cshtml" />
-    <Content Include="Views\Album\Albums.cshtml" />
-    <Content Include="Views\Album\AlbumPartialView.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Home\Pie.cshtml" />
-    <Content Include="Views\Album\Create.cshtml" />
-    <Content Include="Views\Album\Delete.cshtml" />
     <Content Include="Views\GiveBacks\Create.cshtml" />
     <Content Include="Views\GiveBacks\Delete.cshtml" />
     <Content Include="Views\GiveBacks\Details.cshtml" />
@@ -366,6 +392,41 @@
     <Content Include="Views\Singers\Details.cshtml" />
     <Content Include="Views\Singers\Edit.cshtml" />
     <Content Include="Views\Singers\Index.cshtml" />
+    <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\Songs\Delete.cshtml" />
+    <Content Include="Views\Songs\Details.cshtml" />
+    <Content Include="Views\Songs\Edit.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
+    <Content Include="Views\Styles\Create.cshtml" />
+    <Content Include="Views\Styles\Delete.cshtml" />
+    <Content Include="Views\Styles\Details.cshtml" />
+    <Content Include="Views\Styles\Edit.cshtml" />
+    <Content Include="Views\Styles\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Likes\Create.cshtml" />
+    <Content Include="Views\Likes\Delete.cshtml" />
+    <Content Include="Views\Likes\Details.cshtml" />
+    <Content Include="Views\Likes\Edit.cshtml" />
+    <Content Include="Views\Likes\Index.cshtml" />
+    <Content Include="Views\EventViews\Create.cshtml" />
+    <Content Include="Views\EventViews\Delete.cshtml" />
+    <Content Include="Views\EventViews\Details.cshtml" />
+    <Content Include="Views\EventViews\Edit.cshtml" />
+    <Content Include="Views\EventViews\Index.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

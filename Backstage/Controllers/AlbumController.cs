@@ -12,7 +12,9 @@ namespace Backstage.Controllers
 {
     public class AlbumController : Controller
     {
+        
         private SoulfulBackStage db = new SoulfulBackStage();
+        [Authorize(Users = "john@gmail.com")]
         // GET: Album
         public ActionResult Albums()
         {
@@ -52,7 +54,7 @@ namespace Backstage.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Album_id,Singer_id,Datetime,Album_Name,Pic,About,Company,Price")] Album albums)
+        public ActionResult Edit([Bind(Include = "Album_id,Singer_id,Datetime,Album_Name,Pic,About,Company,Price,Hits,WeekHits,MonthHits")] Album albums)
         {
             if (ModelState.IsValid)
             {

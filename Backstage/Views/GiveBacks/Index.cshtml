@@ -1,39 +1,55 @@
-﻿@model IEnumerable<Backstage.Models.GiveBacks>
-
+﻿@*@model IEnumerable<Backstage.Models.GiveBacks>*@
+@using Backstage.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<GiveBacks>
 @{
     ViewBag.Title = "Index";
 }
 
-    <div class="right_col" role="main" style="padding-top:0">
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        @using (Html.BeginForm("Index","GiveBacks",FormMethod.Get))
-        {
-            @Html.TextBox("searching")<input type="submit" value="Searching"style="margin-left:10px">
-        }
-    <table class="table" style="margin-top:0">
-        <tr>
+@section topCSS{
+    <link href="~/Asset/Css/table.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+<div class="right_col" role="main">
+
+    <div class="feature">
+        <div class="col-lg-6">
+            <p>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })</p>
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Index", "GiveBacks", FormMethod.Get))
+            {
+                <div class="search">
+                    @Html.TextBox("searchString")<input type="submit" value="Searching" style="margin-left:15px;color:#ffffff" class="btn btn-dark">
+                </div>
+            }
+        </div>
+    </div>
+    
+    <table class="table">
+        <tr class="header">
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Subject)
+                Subject
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Message)
+                Message
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
+            <th></th>
         </tr>
         @if (Model.Count() == 0)
         {
             <tr>
-                <td colspan="5" style="color:red">
+                <td colspan="6" style="color:red">
                     暫無資料
                 </td>
             </tr>
@@ -42,27 +58,30 @@
         {
             foreach (var item in Model)
             {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
-        </td>
-    </tr>
+                <tr class="context">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                       @Html.ActionLink("Edit", "Edit", new { id = item.Id },new { @class = "btn btn-success" })
+                    </td>
+                </tr>
             }
         }
     </table>
-    </div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

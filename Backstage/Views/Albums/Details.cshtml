@@ -1,0 +1,98 @@
+﻿@model Backstage.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal right_col">
+        <dt>
+            @Html.DisplayNameFor(model => model.Singer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Singer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Album_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Album_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekHits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekHits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthHits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthHits)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Album_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

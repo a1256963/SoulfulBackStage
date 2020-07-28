@@ -1,0 +1,245 @@
+﻿@model Backstage.Models.Album
+
+@{
+    ViewBag.Title = "Create";
+}
+@section topCSS{
+
+    <link href="~/Asset/Css/Album.css" rel="stylesheet" />
+} 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="right_col" role="main">
+    <h4>Album</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row Album-row ">
+            <div class="Album-message">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Singer_id, "Singer_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.DropDownList("Singer_id", null, htmlAttributes: new { @class = "form-control" })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Singer_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Datetime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Datetime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Album_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Album_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Album_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pic, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Pic, new { htmlAttributes = new { @class = "form-control", @id = "asd" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Pic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Hits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Hits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WeekHits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.WeekHits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.WeekHits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MonthHits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.MonthHits, new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            @Html.ValidationMessageFor(model => model.MonthHits, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="Alubm-pic">
+                <div id="upload" class=" ">
+                    <hr />
+                    <!-- 選取圖片的 input -->
+                    <div class="form-group">
+                        <label for="upload" style="margin-right:50px">選擇上傳圖檔</label>
+                        <div>
+                            <input id="upload" type="file" accept="image/*" v-on:change="showFile">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">圖片名稱</label>
+                        <div class="">
+                            <input class="form-control" id="des" type="text" v-model="des" v-on:keyup.13="submit" required>
+
+                        </div>
+                    </div>
+                    <!-- 圖片標題 -->
+
+                    <div class="form-group">
+                        <label for="des">圖片描述</label>
+                        <div class="">
+                            <input class="form-control" id="des" type="text" v-model="des" v-on:keyup.13="submit" required>
+
+                        </div>
+                    </div>
+
+                    <!-- 圖片描述 -->
+                    <!-- 上傳按鈕 -->
+                    <button class="btn btn-primary" type="button" v-on:click="submit">上傳</button>
+                    <div class="form-group" style="margin:30px 0 0 240px">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-warning" />
+                        </div>
+                    </div>
+                    <!-- 引用js -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+           @Html.ActionLink("Back to List", "Index")
+     </div>
+
+
+    @*<div>
+           @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+        </div>*@
+
+
+
+
+</div>
+}
+@section endJS
+{
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        const id = '4cff1caaf837963'; // 填入 App 的 Client ID
+        const token = '400e8f22a1c97f65cf0e988b0940b5ab556680b7'; // 填入 token
+
+        //- upload
+        const upload = new Vue({
+            el: '#upload',
+            data: {
+                album: '', // 若要指定傳到某個相簿，就填入相簿的 ID
+                file: null, // 準備拿 input type="file" 的值
+                fs: {
+                    name: '', // input的圖檔名稱
+                    thumbnail: null, // input的圖片縮圖
+                    size: null // input的圖片大小
+                },
+                title: '', // 圖片標題
+                des: '' // 圖片描述
+            },
+            methods: {
+                showFile(e) {
+                    this.file = e.target.files[0]; // input type="file" 的值
+                    this.fs.name = this.file.name; // input的圖檔名稱
+                    this.fs.size = Math.floor(this.file.size * 0.001) + 'KB'; // input的圖片大小
+                    this.fs.thumbnail = window.URL.createObjectURL(this.file); // input的圖片縮圖
+                    this.title = this.fs.name; // 預設 input 的圖檔名稱為圖片上傳時的圖片標題
+                },
+                submit() {
+                    let settings = {
+                        async: false,
+                        crossDomain: true,
+                        processData: false,
+                        contentType: false,
+                        type: 'POST',
+                        url: 'https://api.imgur.com/3/image',
+                        headers: {
+                            Authorization: 'Bearer ' + token
+                        },
+                        mimeType: 'multipart/form-data'
+                    };
+
+                    let form = new FormData();
+                    form.append('image', this.file);
+                    form.append('title', this.title);
+                    form.append('description', this.des);
+                    //form.append('album', album); // 有要指定的相簿就加這行
+
+                    settings.data = form;
+
+                    $.ajax(settings).done(function (res) {
+                        //console.log(res); // 可以看見上傳成功後回的值
+                        var test = JSON.parse(res);
+                        console.log(test.data.link)
+
+                        $('#asd').val(test.data.link);
+
+
+                        alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。')
+                    });
+                }
+            }
+        });
+    </script>
+}

@@ -7,7 +7,7 @@ namespace Backstage.Models
     using System.Data.Entity.Spatial;
 
     [Table("Event")]
-    public partial class Event
+    public partial class EventView
     {
         [Key]
         public int Event_id { get; set; }
